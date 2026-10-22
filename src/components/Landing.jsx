@@ -23,7 +23,7 @@ const STYLES = `
   --mono: 'Fira Code', Consolas, monospace;
 }
 html { scroll-behavior: smooth; background: var(--bg); }
-body { background: var(--bg); color: var(--ink2); font-family: 'Archivo', system-ui, sans-serif; }
+body { background: var(--bg); color: var(--ink2); font-family: var(--mono); }
 ::selection { background: var(--pink); color: var(--bg); }
 :focus-visible { outline: 2px dashed var(--pink); outline-offset: 3px; }
 section[id] { scroll-margin-top: 0; }
@@ -95,6 +95,7 @@ section[id] { scroll-margin-top: 0; }
 .prose li::before { content: ''; position: absolute; left: .25rem; top: .72em; width: 6px; height: 6px; background: var(--pink); }
 .prose code { font-family: var(--mono); font-size: .86em; color: var(--lilac); background: var(--panel2); padding: .1em .35em; }
 .prose strong { color: var(--ink); font-weight: 600; }
+.prose-tight li { margin-bottom: .45rem; line-height: 1.6; }
 .codeblock { margin: 0 0 1.6rem; }
 .codeblock pre { overflow-x: auto; padding: 1rem 1.15rem; font-family: var(--mono); font-size: .82rem; line-height: 1.65; color: #e6def7; }
 .codeblock .cm { color: var(--ink3); font-style: italic; }
@@ -1067,7 +1068,7 @@ function SectionHeading({ num, kicker, title, subtitle }) {
                 {num} // {kicker}
             </p>
             <h2 className="display mt-3 text-[clamp(1.9rem,4.2vw,3rem)]">{title}</h2>
-            {subtitle && <p className="mt-3 max-w-2xl leading-relaxed t-ink2">{subtitle}</p>}
+            {subtitle && <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed t-ink2">{subtitle}</p>}
         </header>
     )
 }
@@ -1295,8 +1296,8 @@ function About({ t }) {
                 <SectionHeading num="01" kicker={a.kicker} title={a.title} />
                 <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
                     <div>
-                        <p className="max-w-xl text-[1.06rem] leading-[1.8] t-ink2">{a.intro}</p>
-                        <a href={ART_URL} target="_blank" rel="noopener noreferrer" className="win lift mt-6 inline-flex items-center gap-4 py-3 pl-3 pr-5">
+                        <p className="max-w-xl text-[0.95rem] leading-[1.75] t-ink2">{a.intro}</p>
+                        <a href={ART_URL} target="_blank" rel="noopener noreferrer" className="win lift mt-5 inline-flex items-center gap-4 py-3 pl-3 pr-5">
                             <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-[var(--line)] bg-[var(--bg)]">
                                 <Sprite name="frame" className="h-7 w-8" />
                             </span>
@@ -1308,33 +1309,33 @@ function About({ t }) {
                             </span>
                         </a>
 
-                        <h3 className="pixel mt-9 text-[0.78rem] t-lilac">{a.experienceTitle}</h3>
+                        <h3 className="pixel mt-8 text-[0.78rem] t-lilac">{a.experienceTitle}</h3>
                         <ol className="mt-5 border-l border-[var(--line)]">
                             {a.experience.map((e, i) => (
-                                <li key={e.role} className="relative pb-6 pl-7 last:pb-0">
+                                <li key={e.role} className="relative pb-5 pl-7 last:pb-0">
                                     <span aria-hidden="true" className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] ${i === 0 ? 'bg-[var(--pink)]' : 'border border-[var(--line)] bg-[var(--bg)]'}`} />
                                     <p className="mono text-[0.72rem] t-ink3">{e.period}</p>
-                                    <h4 className="mt-0.5 font-semibold t-ink">{e.role}</h4>
-                                    <p className="text-[0.92rem] t-ink2">
+                                    <h4 className="mt-0.5 text-[0.95rem] font-semibold t-ink">{e.role}</h4>
+                                    <p className="text-[0.85rem] t-ink2">
                                         <span className={i === 0 ? 't-pink' : undefined}>{e.org}</span>
                                         {e.type && <span className="t-ink3"> · {e.type}</span>}
                                     </p>
-                                    {e.note && <p className="mt-1 text-[0.92rem] t-ink2">{e.note}</p>}
+                                    {e.note && <p className="mt-1 text-[0.85rem] t-ink2">{e.note}</p>}
                                 </li>
                             ))}
                         </ol>
                     </div>
 
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-5">
                         <div className="win ticks">
                             <WinBar title={`${a.educationTitle.toLowerCase()}.txt`} />
                             <ul className="divide-y divide-[var(--line-soft)]">
                                 {a.education.map((ed) => (
-                                    <li key={ed.degree} className="px-5 py-3.5">
+                                    <li key={ed.degree} className="px-5 py-3">
                                         <p className="mono text-[0.72rem] t-ink3">{ed.period}</p>
-                                        <h4 className="mt-0.5 font-semibold leading-snug t-ink">{ed.degree}</h4>
-                                        <p className="text-[0.9rem] t-pink">{ed.school}</p>
-                                        <p className="mt-1.5 text-[0.9rem] leading-relaxed t-ink2">{ed.note}</p>
+                                        <h4 className="mt-0.5 text-[0.95rem] font-semibold leading-snug t-ink">{ed.degree}</h4>
+                                        <p className="text-[0.85rem] t-pink">{ed.school}</p>
+                                        <p className="mt-1 text-[0.84rem] leading-relaxed t-ink2">{ed.note}</p>
                                     </li>
                                 ))}
                             </ul>
@@ -1343,8 +1344,8 @@ function About({ t }) {
                             <WinBar title={`${a.certsTitle.toLowerCase()}.txt`} />
                             <ul className="divide-y divide-[var(--line-soft)]">
                                 {a.certs.map((c) => (
-                                    <li key={c.name} className="flex items-baseline justify-between gap-4 px-5 py-2.5">
-                                        <span className="text-[0.9rem] leading-snug t-ink">
+                                    <li key={c.name} className="flex items-baseline justify-between gap-4 px-5 py-2">
+                                        <span className="text-[0.84rem] leading-snug t-ink">
                                             {c.name} <span className="t-ink3">· {c.issuer}</span>
                                         </span>
                                         <span className="mono shrink-0 text-[0.7rem] t-ink3">{c.date}</span>
@@ -1390,19 +1391,19 @@ function Skills({ t }) {
                     ))}
                 </div>
 
-                <div className="mt-12 flex flex-wrap items-baseline gap-x-5 gap-y-2">
+                <div className="mt-10 flex flex-wrap items-baseline gap-x-5 gap-y-2">
                     <h3 className="display text-[clamp(1.35rem,2.6vw,1.75rem)]">{t.generalSection.title}</h3>
                     <p className="kicker">{t.generalSection.kicker}</p>
-                    <p className="w-full t-ink2">{t.generalSection.subtitle}</p>
+                    <p className="w-full text-[0.92rem] t-ink2">{t.generalSection.subtitle}</p>
                 </div>
                 <ul className="mt-6 grid gap-px border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-4">
                     {generalItems.map((g) => (
                         <li key={g.id} className="bg-[var(--panel)] px-5 py-4 transition-colors duration-200 hover:bg-[var(--panel2)]">
                             <div className="mb-1.5 flex items-center gap-2.5">
                                 <span className="t-lilac">{g.icon}</span>
-                                <h4 className="font-semibold t-ink">{g.title}</h4>
+                                <h4 className="text-[0.92rem] font-semibold t-ink">{g.title}</h4>
                             </div>
-                            <p className="text-[0.88rem] leading-relaxed t-ink2">{g.text}</p>
+                            <p className="text-[0.82rem] leading-relaxed t-ink2">{g.text}</p>
                         </li>
                     ))}
                 </ul>
@@ -1433,7 +1434,7 @@ function Projects({ t, lang }) {
         <section id="projects" className={SCREEN}>
             <Container>
                 <SectionHeading num="03" kicker={t.projects.kicker} title={t.projects.title} subtitle={t.projects.subtitle} />
-                <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)]">
+                <div className="grid grid-cols-1 items-start gap-7 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)]">
                     <div role="tablist" aria-label={t.projects.list} aria-orientation="vertical" onKeyDown={onKeyDown} className="flex flex-col gap-2.5">
                         {PROJECTS.map((p, i) => (
                             <button
@@ -1452,7 +1453,7 @@ function Projects({ t, lang }) {
                                 <Sprite name={p.sprite} className="h-7 w-7 shrink-0" />
                                 <span className="min-w-0">
                                     <span className="block font-semibold t-ink">{p.name}</span>
-                                    <span className="block truncate text-[0.78rem] t-ink3">{p.tech.slice(0, 3).join(' · ')}</span>
+                                    <span className="block truncate text-[0.74rem] t-ink3">{p.tech.slice(0, 3).join(' · ')}</span>
                                 </span>
                             </button>
                         ))}
@@ -1466,8 +1467,8 @@ function Projects({ t, lang }) {
 
                             <div className="mt-5 grid gap-x-9 gap-y-5 md:grid-cols-2">
                                 <div>
-                                    <p className="leading-relaxed t-ink2">{c.description}</p>
-                                    <p className="mt-4 text-[0.93rem] leading-relaxed t-ink2">
+                                    <p className="text-[0.9rem] leading-relaxed t-ink2">{c.description}</p>
+                                    <p className="mt-3 text-[0.86rem] leading-relaxed t-ink2">
                                         <span className="pixel mr-2 text-[0.66rem] t-pink">{t.projects.why}:</span>
                                         {c.purpose}
                                     </p>
@@ -1481,7 +1482,7 @@ function Projects({ t, lang }) {
                                 </div>
                                 <div>
                                     <p className="pixel text-[0.66rem] t-lilac">{t.projects.highlights}</p>
-                                    <ul className="prose mt-3 text-[0.92rem]">
+                                    <ul className="prose prose-tight mt-3 text-[0.85rem]">
                                         {c.highlights.map((h) => (
                                             <li key={h}>{h}</li>
                                         ))}
@@ -1642,7 +1643,7 @@ function Contact({ t }) {
         <section id="contact" className={SCREEN}>
             <Container>
                 <SectionHeading num="05" kicker={c.kicker} title={c.title} subtitle={c.subtitle} />
-                <div className="max-w-3xl">
+                <div className="grid items-center gap-8 lg:grid-cols-[1.35fr_1fr]">
                     <div>
                         <div className="win ticks">
                             <WinBar title="carla@manjaro: ~" />
@@ -1670,8 +1671,9 @@ function Contact({ t }) {
                                 </p>
                             </div>
                         </div>
+                    </div>
 
-                        <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+                    <ul className="flex flex-col gap-4">
                             {CONTACT_LINKS.map((l) => (
                                 <li key={l.id}>
                                     <a href={l.href} target="_blank" rel="noopener noreferrer" className="win lift flex h-full items-center gap-3 p-3">
@@ -1684,8 +1686,7 @@ function Contact({ t }) {
                                     </a>
                                 </li>
                             ))}
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
             </Container>
         </section>
