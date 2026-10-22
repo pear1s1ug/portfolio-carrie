@@ -109,10 +109,6 @@ section[id] { scroll-margin-top: 0; }
 
 /* Tarjeta Manjaro: verde y teal sobre fondo oscuro */
 .manjaro { position: relative; background: #0d1813; border: 1px solid #1f4a35; box-shadow: 4px 4px 0 #1abc9c33; }
-.bash { background: #08100c; border: 1px solid #1f4a35; }
-.bash-bar { display: flex; align-items: center; justify-content: space-between; padding: .3rem .6rem; background: #12261b; border-bottom: 1px solid #1f4a35; font-family: var(--pixel); font-size: .64rem; color: #35bf5c; text-transform: lowercase; }
-.bash-btn { width: 8px; height: 8px; border: 1px solid #2f6b4c; }
-.bash .caret { background: #1abc9c; }
 
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .rise { animation: rise .6s ease-out both; }
@@ -876,6 +872,8 @@ const CONTENT = {
             kicker: 'Contact',
             title: 'Get in touch',
             subtitle: 'Open to junior developer roles in Gran Santiago, on-site or hybrid.',
+            whoami: 'Carla Prado — software developer',
+            location: 'Gran Santiago, Chile · on-site / hybrid',
             links: {
                 github: ['GitHub', 'Code and course projects'],
                 linkedin: ['LinkedIn', 'Experience and education'],
@@ -978,6 +976,8 @@ const CONTENT = {
             kicker: 'Contacto',
             title: 'Conversemos',
             subtitle: 'Abierta a roles de desarrolladora junior en Gran Santiago, presencial o híbrido.',
+            whoami: 'Carla Prado — desarrolladora de software',
+            location: 'Gran Santiago, Chile · presencial / híbrido',
             links: {
                 github: ['GitHub', 'Código y proyectos de la carrera'],
                 linkedin: ['LinkedIn', 'Experiencia y formación'],
@@ -1666,14 +1666,6 @@ function ArticleView({ slug, t, lang }) {
    Contacto
    ═══════════════════════════════════════════════════════════ */
 
-/* Terminal decorativa de la tarjeta Manjaro: comandos reales, sin usuario@host */
-const BASH_LINES = [
-    ['cmd', 'uname -o'],
-    ['out', 'GNU/Linux'],
-    ['cmd', 'echo $SHELL'],
-    ['out', '/bin/bash'],
-]
-
 function Contact({ t }) {
     const c = t.contact
     return (
@@ -1681,50 +1673,56 @@ function Contact({ t }) {
             <Container>
                 <SectionHeading num="05" kicker={c.kicker} title={c.title} subtitle={c.subtitle} />
                 <div className="grid items-center gap-10 lg:grid-cols-[1.4fr_0.6fr]">
-                    <ul className="flex flex-col gap-4">
-                        {CONTACT_LINKS.map((l) => (
-                            <li key={l.id}>
-                                <a href={l.href} target="_blank" rel="noopener noreferrer" className="win lift flex items-center gap-4 p-4">
-                                    <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-[var(--line)] bg-[var(--bg)] t-lilac">{ICONS[l.id]}</span>
-                                    <span className="min-w-0 flex-1">
-                                        <span className="block font-semibold t-ink">{c.links[l.id][0]}</span>
-                                        <span className="block text-[0.88rem] t-ink3">{c.links[l.id][1]}</span>
-                                    </span>
-                                    <span className="mono hidden text-[0.78rem] t-lilac sm:inline">{l.text}</span>
-                                    <span aria-hidden="true" className="t-pink">↗</span>
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-
-                    <figure className="manjaro mx-auto flex w-full max-w-[300px] flex-col items-center px-5 pb-5 pt-5">
-                        <Sprite name="manjaro" className="h-[132px] w-[132px]" />
-                        <figcaption className="mt-3 text-center">
-                            <span className="pixel block text-[0.74rem] text-[#35bf5c]">{c.manjaro[0]}</span>
-                            <span className="mono mt-1 block text-[0.74rem] text-[#7fcfae]">{c.manjaro[1]}</span>
-                        </figcaption>
-                        <div className="bash mt-4 w-full" aria-hidden="true">
-                            <div className="bash-bar">
-                                <span>bash</span>
-                                <span className="flex gap-1">
-                                    <span className="bash-btn" />
-                                    <span className="bash-btn" />
-                                    <span className="bash-btn bg-[#35bf5c]" />
-                                </span>
-                            </div>
-                            <div className="mono px-3 py-2.5 text-[0.74rem] leading-[1.65]">
-                                {BASH_LINES.map(([kind, text]) => (
-                                    <p key={text} className={kind === 'cmd' ? 'text-[#e8f5ee]' : 'text-[#7fcfae]'}>
-                                        {kind === 'cmd' && <span className="text-[#35bf5c]">$ </span>}
-                                        {text}
+                    <div>
+                        <div className="win ticks">
+                            <WinBar title="carla@manjaro: ~" />
+                            <div className="mono space-y-1 p-6 text-[0.86rem] leading-relaxed">
+                                <p>
+                                    <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="t-ink">whoami</span>
+                                </p>
+                                <p className="t-ink2">{c.whoami}</p>
+                                <p className="pt-3">
+                                    <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="t-ink">cat location.txt</span>
+                                </p>
+                                <p className="t-ink2">{c.location}</p>
+                                <p className="pt-3">
+                                    <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="t-ink">ls ~/links</span>
+                                </p>
+                                {CONTACT_LINKS.map((l) => (
+                                    <p key={l.id}>
+                                        <a href={l.href} target="_blank" rel="noopener noreferrer" className="t-lilac underline decoration-dotted underline-offset-4 hover:text-[var(--pink)]">
+                                            {l.text}
+                                        </a>
                                     </p>
                                 ))}
-                                <p>
-                                    <span className="text-[#35bf5c]">$ </span>
-                                    <span className="caret" />
+                                <p className="pt-3">
+                                    <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="caret" aria-hidden="true" />
                                 </p>
                             </div>
                         </div>
+
+                        <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+                            {CONTACT_LINKS.map((l) => (
+                                <li key={l.id}>
+                                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="win lift flex h-full items-center gap-3 p-3">
+                                        <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--line)] bg-[var(--bg)] t-lilac">{ICONS[l.id]}</span>
+                                        <span className="min-w-0 flex-1">
+                                            <span className="block font-semibold t-ink">{c.links[l.id][0]}</span>
+                                            <span className="block text-[0.8rem] leading-snug t-ink3">{c.links[l.id][1]}</span>
+                                        </span>
+                                        <span aria-hidden="true" className="t-pink">↗</span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <figure className="manjaro mx-auto flex w-full max-w-[260px] flex-col items-center px-6 pb-5 pt-6">
+                        <Sprite name="manjaro" className="h-[154px] w-[154px]" />
+                        <figcaption className="mt-4 text-center">
+                            <span className="pixel block text-[0.74rem] text-[#35bf5c]">{c.manjaro[0]}</span>
+                            <span className="mono mt-1 block text-[0.74rem] text-[#7fcfae]">{c.manjaro[1]}</span>
+                        </figcaption>
                     </figure>
                 </div>
             </Container>
