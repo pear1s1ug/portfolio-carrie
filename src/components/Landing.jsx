@@ -109,6 +109,10 @@ section[id] { scroll-margin-top: 0; }
 
 /* Tarjeta Manjaro: verde y teal sobre fondo oscuro */
 .manjaro { position: relative; background: #0d1813; border: 1px solid #1f4a35; box-shadow: 4px 4px 0 #1abc9c33; }
+.bash { background: #08100c; border: 1px solid #1f4a35; }
+.bash-bar { display: flex; align-items: center; justify-content: space-between; padding: .3rem .6rem; background: #12261b; border-bottom: 1px solid #1f4a35; font-family: var(--pixel); font-size: .64rem; color: #35bf5c; text-transform: lowercase; }
+.bash-btn { width: 8px; height: 8px; border: 1px solid #2f6b4c; }
+.bash .caret { background: #1abc9c; }
 
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .rise { animation: rise .6s ease-out both; }
@@ -1661,6 +1665,15 @@ function ArticleView({ slug, t, lang }) {
 /* ═══════════════════════════════════════════════════════════
    Contacto
    ═══════════════════════════════════════════════════════════ */
+
+/* Terminal decorativa de la tarjeta Manjaro: comandos reales, sin usuario@host */
+const BASH_LINES = [
+    ['cmd', 'uname -o'],
+    ['out', 'GNU/Linux'],
+    ['cmd', 'echo $SHELL'],
+    ['out', '/bin/bash'],
+]
+
 function Contact({ t }) {
     const c = t.contact
     return (
@@ -1684,12 +1697,34 @@ function Contact({ t }) {
                         ))}
                     </ul>
 
-                    <figure className="manjaro mx-auto flex w-full max-w-[260px] flex-col items-center px-6 pb-5 pt-6">
-                        <Sprite name="manjaro" className="h-[154px] w-[154px]" />
-                        <figcaption className="mt-4 text-center">
+                    <figure className="manjaro mx-auto flex w-full max-w-[300px] flex-col items-center px-5 pb-5 pt-5">
+                        <Sprite name="manjaro" className="h-[132px] w-[132px]" />
+                        <figcaption className="mt-3 text-center">
                             <span className="pixel block text-[0.74rem] text-[#35bf5c]">{c.manjaro[0]}</span>
                             <span className="mono mt-1 block text-[0.74rem] text-[#7fcfae]">{c.manjaro[1]}</span>
                         </figcaption>
+                        <div className="bash mt-4 w-full" aria-hidden="true">
+                            <div className="bash-bar">
+                                <span>bash</span>
+                                <span className="flex gap-1">
+                                    <span className="bash-btn" />
+                                    <span className="bash-btn" />
+                                    <span className="bash-btn bg-[#35bf5c]" />
+                                </span>
+                            </div>
+                            <div className="mono px-3 py-2.5 text-[0.74rem] leading-[1.65]">
+                                {BASH_LINES.map(([kind, text]) => (
+                                    <p key={text} className={kind === 'cmd' ? 'text-[#e8f5ee]' : 'text-[#7fcfae]'}>
+                                        {kind === 'cmd' && <span className="text-[#35bf5c]">$ </span>}
+                                        {text}
+                                    </p>
+                                ))}
+                                <p>
+                                    <span className="text-[#35bf5c]">$ </span>
+                                    <span className="caret" />
+                                </p>
+                            </div>
+                        </div>
                     </figure>
                 </div>
             </Container>
