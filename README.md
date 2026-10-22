@@ -13,11 +13,7 @@ pnpm preview   # serve the production build
 
 - `src/components/Landing.jsx` — the whole landing page: sections, content (EN/ES), projects, blog articles, styles and pixel sprites.
 - `src/assets/pixel/portrait.png` — 60×75 pixel-art portrait (generated from `me4.png`, brand palette).
-- `src/assets/pixel/night-scene.png` — 640×96 pixel night scene used in the footer.
+- `src/assets/pixel/night-scene.png` — 640×96 pixel night scene used in the footer (tiles seamlessly).
 - `public/favicon.svg` — pixel ghost favicon.
 
 Articles open at `#/blog/<slug>`; every other hash is a section anchor.
-
-## Pending
-
-Contact links: set `LINKEDIN_URL` and `EMAIL` at the top of `Landing.jsx`; they only render once filled in.

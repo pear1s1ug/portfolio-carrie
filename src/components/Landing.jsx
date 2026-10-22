@@ -3,14 +3,11 @@ import portrait from '../assets/pixel/portrait.png'
 import nightScene from '../assets/pixel/night-scene.png'
 
 /* ═══════════════════════════════════════════════════════════
-   Datos de contacto
-   Solo se muestran los que tienen URL. Completa LinkedIn y
-   correo cuando quieras publicarlos.
+   Enlaces externos
    ═══════════════════════════════════════════════════════════ */
-const GITHUB_USER = 'pear1s1ug'
-const GITHUB_URL = `https://github.com/${GITHUB_USER}`
-const LINKEDIN_URL = null // p. ej. 'https://www.linkedin.com/in/tu-perfil'
-const EMAIL = null // p. ej. 'tu-correo@dominio.cl'
+const GITHUB_URL = 'https://github.com/pear1s1ug'
+const LINKEDIN_URL = 'https://www.linkedin.com/in/carla-prado-a37baa345/'
+const ART_URL = 'https://www.instagram.com/mauve.aphelion'
 
 /* ═══════════════════════════════════════════════════════════
    Estilos del sistema visual (paleta, ventanas, pixel art)
@@ -29,7 +26,7 @@ html { scroll-behavior: smooth; background: var(--bg); }
 body { background: var(--bg); color: var(--ink2); font-family: 'Archivo', system-ui, sans-serif; }
 ::selection { background: var(--pink); color: var(--bg); }
 :focus-visible { outline: 2px dashed var(--pink); outline-offset: 3px; }
-section[id] { scroll-margin-top: 4.5rem; }
+section[id] { scroll-margin-top: 0; }
 
 .t-ink { color: var(--ink); } .t-ink2 { color: var(--ink2); } .t-ink3 { color: var(--ink3); }
 .t-pink { color: var(--pink); } .t-lilac { color: var(--lilac); }
@@ -102,6 +99,17 @@ section[id] { scroll-margin-top: 4.5rem; }
 .codeblock pre { overflow-x: auto; padding: 1rem 1.15rem; font-family: var(--mono); font-size: .82rem; line-height: 1.65; color: #e6def7; }
 .codeblock .cm { color: var(--ink3); font-style: italic; }
 
+/* Menú de proyectos */
+.proj-tab { display: flex; align-items: center; gap: .75rem; width: 100%; padding: .7rem .9rem .7rem .6rem; text-align: left; border: 1px solid var(--line-soft); background: var(--panel); cursor: pointer; transition: border-color .15s, background-color .15s, box-shadow .15s, transform .15s; }
+.proj-tab:hover { border-color: var(--line); background: var(--panel2); }
+.proj-tab .mark { width: .9em; flex: none; font-size: .7rem; color: var(--pink); opacity: 0; }
+.proj-tab.is-active { border-color: var(--lilac); background: var(--panel2); box-shadow: 4px 4px 0 var(--plum); transform: translate(-2px, -2px); }
+.proj-tab.is-active .mark { opacity: 1; }
+.fade-in { animation: rise .35s ease-out both; }
+
+/* Tarjeta Manjaro: verde y teal sobre fondo oscuro */
+.manjaro { position: relative; background: #0d1813; border: 1px solid #1f4a35; box-shadow: 4px 4px 0 #1abc9c33; }
+
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .rise { animation: rise .6s ease-out both; }
 .d1 { animation-delay: .08s; } .d2 { animation-delay: .16s; } .d3 { animation-delay: .24s; } .d4 { animation-delay: .32s; }
@@ -122,6 +130,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 const PALETTE = {
     k: '#100e17', w: '#efe9fb', l: '#c4b0f5', p: '#ee7fb5',
     m: '#8c3c65', d: '#3d2a5c', b: '#2f3761',
+    g: '#35bf5c', t: '#1abc9c', n: '#0f1f18',
 }
 
 const SPRITES = {
@@ -203,6 +212,42 @@ const SPRITES = {
         '..kmpmpmpmpk..',
         '..kmpmpmpmpk..',
         '...kkkkkkkk...',
+    ],
+    manjaro: [
+        'kkkkkkkkkkkkkkkkkkkkkk',
+        'kddddddddddddddddddddk',
+        'kdkkkkkkkkkkkkkkkkkkdk',
+        'kdknnnnnnnnnnnnnnnnkdk',
+        'kdknnngggggg.gggnnnkdk',
+        'kdknnngggggg.gggnnnkdk',
+        'kdknnnggg....gggnnnkdk',
+        'kdknnnggg.tt.gggnnnkdk',
+        'kdknnnggg.tt.gggnnnkdk',
+        'kdknnnggg.tt.gggnnnkdk',
+        'kdknnnggg.tt.gggnnnkdk',
+        'kdknnnggg.tt.gggnnnkdk',
+        'kdknnnnnnnnnnnnnnnnkdk',
+        'kdknntnnnnnnnnnnnnnkdk',
+        'kdknnntnttttnnnnnnnkdk',
+        'kdknntnnnnnnnnnnnnnkdk',
+        'kdknnnnnnnnnnnnnnnnkdk',
+        'kdkkkkkkkkkkkkkkkkkkdk',
+        'kddddddddddddddddgtddk',
+        'kkkkkkkkkkkkkkkkkkkkkk',
+        '........kddddk........',
+        '.....kkkkkkkkkkkk.....',
+    ],
+    frame: [
+        'kkkkkkkkkkkk',
+        'kllllllllllk',
+        'kldddddwddlk',
+        'klddddddddlk',
+        'kldddpddddlk',
+        'kldddmddddlk',
+        'klddmmmddmlk',
+        'kldmmmmmmmlk',
+        'kllllllllllk',
+        'kkkkkkkkkkkk',
     ],
     gamepad: [
         '..kkkkkkkkkkkk..',
@@ -352,7 +397,6 @@ const PROJECTS = [
         sprite: 'envelope',
         name: 'Nexus Gaming',
         slug: 'desCloudNative',
-        featured: true,
         tech: ['Java 17', 'Spring Boot 4', 'Spring Security', 'OAuth 2.0 / JWT', 'Microsoft Entra ID', 'RabbitMQ', 'React', 'MSAL', 'Docker Compose'],
         links: [{ kind: 'repo', href: `${GITHUB_URL}/desCloudNative` }],
         en: {
@@ -502,70 +546,6 @@ const PROJECTS = [
    Blog: fragmentos de código tomados de los repositorios
    ═══════════════════════════════════════════════════════════ */
 const CODE = {
-    queues: `private Queue colaPrincipal(String nombre, String dlq) {
-    return QueueBuilder.durable(nombre)
-            .deadLetterExchange(props.exchanges().dlx())
-            .deadLetterRoutingKey(dlq)
-            .ttl((int) props.ttlMs())
-            .build();
-}
-
-/** DLQ: durable, retained for app.messaging.dlq-ttl-ms (24 h) */
-private Queue dlq(String nombre) {
-    return QueueBuilder.durable(nombre)
-            .ttl((int) props.dlqTtlMs())
-            .build();
-}`,
-    listener: `spring:
-  rabbitmq:
-    listener:
-      simple:
-        acknowledge-mode: manual        # the code decides ACK / NACK
-        prefetch: 1
-        default-requeue-rejected: false # never requeue in a loop`,
-    procesar: `public void procesar(Message mensaje, Channel channel, AccionProcesamiento accion) throws IOException {
-    MessageProperties propiedades = mensaje.getMessageProperties();
-    long deliveryTag = propiedades.getDeliveryTag();
-    String cola = propiedades.getConsumerQueue();
-    int intento = intentosPrevios(propiedades);
-
-    try {
-        accion.ejecutar();
-        channel.basicAck(deliveryTag, false);
-    } catch (MensajeInvalidoException e) {
-        // permanent: retrying will never help
-        channel.basicNack(deliveryTag, false, false);
-    } catch (Exception e) {
-        if (intento < maxReintentos) {
-            propiedades.setHeader(HEADER_REINTENTOS, intento + 1);
-            rabbitTemplate.send("", cola, mensaje);
-            channel.basicAck(deliveryTag, false);
-        } else {
-            channel.basicNack(deliveryTag, false, false);
-        }
-    }
-}`,
-    consumer: `@RabbitListener(id = "bienvenida-listener", queues = "\${app.messaging.queues.notificaciones}")
-public void recibir(UsuarioRegistradoEvent evento, Message mensaje, Channel channel) throws IOException {
-    procesador.procesar(mensaje, channel, () -> {
-        if (evento.email() == null || evento.email().isBlank()) {
-            throw new MensajeInvalidoException("Usuario sin email: no se puede notificar");
-        }
-        if (evento.nombre() != null && evento.nombre().contains("#falla")) {
-            throw new IllegalStateException("Simulación de falla del servidor de correo");
-        }
-        log.info("Correo de bienvenida enviado a {} ({})", evento.nombre(), evento.email());
-    });
-}`,
-    monitor: `@Scheduled(fixedDelay = 30000, initialDelay = 30000)
-public void revisarDlqs() {
-    for (String dlq : dlqs) {
-        QueueInformation info = amqpAdmin.getQueueInfo(dlq);
-        if (info != null && info.getMessageCount() > 0) {
-            log.warn("[ALERTA DLQ] {} tiene {} mensaje(s) sin procesar", dlq, info.getMessageCount());
-        }
-    }
-}`,
     index: `# (student, section) -> score, for O(1) lookups
 scores_dict = {
     (s.idAlumno, s.idSeccion): s.score
@@ -632,102 +612,73 @@ if pulp.LpStatus[prob.status] != "Optimal":
 
 const ARTICLES = [
     {
-        slug: 'rabbitmq-manual-ack-dead-letter-queues',
-        date: '2026-10-20',
-        repo: `${GITHUB_URL}/desCloudNative`,
-        tags: ['RabbitMQ', 'Spring AMQP', 'Java'],
+        slug: 'ai-and-handmade-art',
+        date: '2026-10-21',
+        tags: ['AI', 'Art', 'Opinion'],
         en: {
-            title: 'Retry without looping: manual ACKs and dead-letter queues in RabbitMQ',
-            summary: 'How the Nexus Gaming notification service decides, message by message, whether to acknowledge, retry or set a failure aside — and why the defaults aren’t enough.',
+            title: 'In an age of AI, what makes art human?',
+            summary: 'I use AI every day at work and never when I draw. Some thoughts on why, on what artists are right to worry about, and on whether handmade work might come to mean more, not less.',
             blocks: [
-                ['p', 'In a system that communicates through a message broker, the interesting question isn’t how to send a message — it’s what happens when processing it fails. If the consumer acknowledges too early, the message is gone even though the work never happened. If it rejects and requeues blindly, a single malformed message can bounce between broker and consumer forever, burning CPU and blocking everything queued behind it.'],
-                ['p', 'Nexus Gaming, a microservices project for the Cloud Native Development course, has a notification service that consumes three kinds of events from RabbitMQ: a user registered, an order was created, and a product changed. This article walks through how that service handles failure, using the project’s actual configuration and code.'],
-                ['h', 'The topology: every queue knows where its failures go'],
-                ['p', 'Each work queue is declared with two extra arguments: a **dead-letter exchange** and a **time-to-live**. Any message that is rejected without requeue, or that waits longer than the TTL, is re-routed by the broker to that exchange, which delivers it to a dedicated dead-letter queue (DLQ).'],
-                ['code', 'java', CODE.queues],
-                ['p', 'In the project the TTL is 30 seconds for work queues and 24 hours for DLQs (`ttl-ms: 30000`, `dlq-ttl-ms: 86400000`). The short TTL means an event nobody can process in time ends up somewhere visible instead of waiting silently; the long retention gives someone a day to inspect it. The resulting routes are:'],
+                ['p', 'I use AI a lot. At work and in my studies it’s part of how I write code, look things up, make sense of an unfamiliar library or get unstuck on a problem. I don’t feel conflicted about that: in a professional context it’s a tool, and a genuinely useful one.'],
+                ['p', 'When I draw, though, I don’t use it at all. It isn’t a rule I set out to follow — it’s more that the two activities are for different things. I’ve been trying to put into words why that line feels so natural to me, and what it might say about where art is heading.'],
+                ['h', 'Two different kinds of work'],
+                ['p', 'In software, the result is what matters most. If a tool helps me reach working, readable code sooner, the time I save goes into the parts that need more thought. Nobody using an application cares whether a function was typed by hand.'],
+                ['p', 'Drawing doesn’t work that way for me. The point isn’t only to end up with an image; it’s the time spent making it — the decisions, the corrections, the lines I’d draw differently next time. If something else did that part, I’d have an image, but I wouldn’t have drawn anything. The process is the reason I do it.'],
+                ['p', 'So the distinction isn’t that AI is good in one place and bad in another. It’s that the same tool means something different depending on why you’re doing the work in the first place.'],
+                ['h', 'The concerns are real'],
+                ['p', 'It would be easy to stop there and call it a personal preference, but the bigger conversation isn’t about hobbies. AI-generated images are already being used commercially, and I have mixed feelings about that.'],
+                ['p', 'Artists who worry about this aren’t being dramatic. Many of these systems were trained on work made by people who were never asked. Illustration, concept art and design are livelihoods, and when a client can get something “good enough” for a fraction of the cost, the pressure lands on the people who spent years learning the craft. Those concerns deserve to be taken seriously, not answered with “that’s progress”.'],
+                ['p', 'Working in technology doesn’t make me neutral here. If anything, it makes me more aware that tools aren’t built in a vacuum, and that who benefits from them is a choice, not a law of nature.'],
+                ['h', 'Another technological shift'],
+                ['p', 'At the same time, it’s hard not to see this as one more of the big shifts that keep reshaping how things get made. Each of them changed what was cheap and what was rare.'],
+                ['p', 'That’s the part I find interesting. When something becomes abundant, what stays scarce tends to become more noticeable. If generated images end up everywhere — in ads, feeds and stock libraries — then work that clearly came from a person, with their time and their hand in it, might start to stand out more rather than less.'],
+                ['h', 'What a person brings to a piece'],
+                ['p', 'If that happens, the value probably won’t be in competing with AI on its own terms: speed, volume, polish. That’s a race a person isn’t built to win, and I don’t think artists should have to run it. What a person can offer is different:'],
                 ['ul', [
-                    '`nexus.direct` → `usuario.registrado` → `nexus.notificaciones.queue`',
-                    '`nexus.direct` → `orden.creada` → `nexus.tickets.queue`',
-                    '`nexus.topic` → `producto.#` → `nexus.inventario.queue`',
-                    'Rejected or expired → `nexus.dlx` → the matching `*.dlq`',
+                    '**Visible decisions.** Why this composition, this colour, this thing left out. Choices carry a point of view.',
+                    '**Imperfection.** A wobbly line or an uneven texture is evidence that someone was there.',
+                    '**Experience.** People draw from what they’ve lived, noticed and cared about, and it shows.',
+                    '**Time.** Knowing that something took hours — or years of practice — changes how we look at it.',
                 ]],
-                ['h', 'Taking the decision away from the framework'],
-                ['p', 'By default, Spring AMQP acknowledges automatically: if the listener method returns, the message is ACKed; if it throws, the message is rejected and — by default — requeued. That second part is the dangerous one. The service switches to manual acknowledgement and turns off requeue-on-reject:'],
-                ['code', 'yaml', CODE.listener],
-                ['p', '`prefetch: 1` makes the broker hand each consumer one message at a time, so a slow or failing message doesn’t hold a batch of others hostage. `default-requeue-rejected: false` is the safety net: if something escapes the code’s own handling — for example, a JSON payload that can’t be converted to the event type — the container rejects it without requeueing, and the dead-letter exchange takes it to the DLQ.'],
-                ['h', 'One decision table, one class'],
-                ['p', 'All three consumers delegate to a single helper, `ProcesadorConAck`, so the ACK/NACK policy lives in one place. Its rules, as documented in the class itself:'],
-                ['ul', [
-                    '**Processed successfully** → `basicAck`; the message is consumed.',
-                    '**Invalid data** (`MensajeInvalidoException`) → `basicNack` without requeue; straight to the DLQ.',
-                    '**Transient error, attempts left** → republish a copy with `x-reintentos + 1`, then `basicAck` the original.',
-                    '**Transient error, attempts exhausted** → `basicNack` without requeue; to the DLQ.',
-                ]],
-                ['code', 'java', CODE.procesar],
-                ['p', 'Two details make this work. The first is separating invalid errors from transient ones: a message without an email address will never succeed, so it goes straight to the DLQ instead of wasting three attempts. The second is that retries are counted in a custom header. RabbitMQ’s own requeue doesn’t carry a counter you can rely on, so the service publishes a copy back to the same queue with the counter incremented and only then acknowledges the original. The maximum comes from configuration (`max-reintentos: 3`).'],
-                ['p', 'The copy goes through the default exchange (`""`) with the queue name as the routing key. That delivers it to exactly that queue; publishing it to the original exchange would also deliver it to every other queue bound with the same key, duplicating work elsewhere.'],
-                ['h', 'What a consumer looks like'],
-                ['code', 'java', CODE.consumer],
-                ['p', 'The listener only states the business rule and which failures are permanent. The second check is a deliberate test hook: a name containing `#falla` simulates a mail-server outage, which makes it possible to watch a message go through its retries and land in the DLQ.'],
-                ['h', 'Watching the DLQs'],
-                ['p', 'A dead-letter queue nobody looks at is just a slower way to lose data. The service includes a scheduled `DlqMonitor` that checks every DLQ every 30 seconds and logs a warning when any of them has messages:'],
-                ['code', 'java', CODE.monitor],
-                ['h', 'Trade-offs worth knowing'],
-                ['ul', [
-                    '**Republish-then-ACK is not atomic.** If the consumer crashes between the two calls, the broker redelivers the original while the copy also exists, so the same event can be processed twice. Consumers should be idempotent, or record the IDs of events they have already handled.',
-                    '**Immediate retries don’t wait.** Republishing straight away suits short glitches. For longer outages, a delay — such as a TTL-based wait queue — gives the downstream system time to recover.',
-                    '**Retries change the order.** A retried message goes to the back of the queue, so events about the same entity can be processed out of order.',
-                ]],
-                ['h', 'Takeaway'],
-                ['p', 'Decide explicitly what every failure means. Separate errors that will never succeed from errors that might, put a limit on retries, give every queue a dead-letter destination, and make sure someone notices when that destination fills up. The code involved is small — one helper class and a few lines of configuration — but it turns “the message disappeared” into “the message is in the DLQ, and here’s why”.'],
+                ['p', 'Some artists already lean into this by sharing sketches, process videos and work in progress. Showing how something was made becomes part of the work, and it’s exactly the part that can’t be generated.'],
+                ['h', 'What I’m not sure about'],
+                ['p', 'I don’t want to make this sound neater than it is. A renewed appreciation for handmade art, if it comes, won’t automatically pay anyone’s rent. It might be valued by a smaller audience while commercial work keeps shrinking. And it isn’t fair to put the whole burden on artists to “differentiate” themselves from systems built partly on their own work.'],
+                ['p', 'So this isn’t a prediction, and it isn’t a solution. It’s a possibility I find hopeful: that the more generated content surrounds us, the clearer it becomes what a person adds.'],
+                ['h', 'Where that leaves me'],
+                ['p', 'I’ll keep using AI at work, where it helps me do my job better. And I’ll keep drawing by hand, because there the slow part is the part I want. Holding both of those at once doesn’t feel contradictory to me. It feels like taking seriously both what the technology can do and what it can’t replace.'],
             ],
         },
         es: {
-            title: 'Reintentar sin entrar en bucle: ACK manual y dead-letter queues en RabbitMQ',
-            summary: 'Cómo el servicio de notificaciones de Nexus Gaming decide, mensaje a mensaje, si confirmar, reintentar o apartar un fallo, y por qué la configuración por defecto no basta.',
+            title: 'En la era de la IA, ¿qué hace humano al arte?',
+            summary: 'Uso IA todos los días en el trabajo y nunca cuando dibujo. Algunas ideas sobre por qué, sobre lo que con razón preocupa a los artistas y sobre si lo hecho a mano podría llegar a valer más, no menos.',
             blocks: [
-                ['p', 'En un sistema que se comunica a través de un broker de mensajes, la pregunta interesante no es cómo enviar un mensaje, sino qué pasa cuando procesarlo falla. Si el consumidor confirma demasiado pronto, el mensaje desaparece aunque el trabajo nunca se hizo. Si lo rechaza y lo reencola a ciegas, un solo mensaje mal formado puede rebotar entre el broker y el consumidor para siempre, gastando CPU y bloqueando todo lo que viene detrás.'],
-                ['p', 'Nexus Gaming, un proyecto de microservicios para la asignatura Desarrollo Cloud Native, tiene un servicio de notificaciones que consume tres tipos de eventos desde RabbitMQ: un usuario se registró, se creó una orden y cambió un producto. Este artículo recorre cómo ese servicio maneja los fallos, usando la configuración y el código reales del proyecto.'],
-                ['h', 'La topología: cada cola sabe adónde van sus fallos'],
-                ['p', 'Cada cola de trabajo se declara con dos argumentos extra: un **dead-letter exchange** y un **time-to-live**. Cualquier mensaje rechazado sin reencolar, o que espera más que el TTL, es redirigido por el broker a ese exchange, que lo entrega a una dead-letter queue (DLQ) dedicada.'],
-                ['code', 'java', CODE.queues],
-                ['p', 'En el proyecto el TTL es de 30 segundos para las colas de trabajo y de 24 horas para las DLQ (`ttl-ms: 30000`, `dlq-ttl-ms: 86400000`). El TTL corto hace que un evento que nadie alcanza a procesar termine en un lugar visible en vez de esperar en silencio; la retención larga deja un día para revisarlo. Las rutas resultantes son:'],
+                ['p', 'Uso mucho la IA. En el trabajo y en la universidad es parte de cómo escribo código, busco información, entiendo una librería que no conozco o salgo de un problema en el que me trabé. No siento un conflicto con eso: en un contexto profesional es una herramienta, y una realmente útil.'],
+                ['p', 'Cuando dibujo, en cambio, no la uso para nada. No es una regla que me haya propuesto; es más bien que las dos actividades sirven para cosas distintas. He intentado poner en palabras por qué esa línea me parece tan natural y qué podría decir sobre hacia dónde va el arte.'],
+                ['h', 'Dos tipos de trabajo distintos'],
+                ['p', 'En el software, lo que más importa es el resultado. Si una herramienta me ayuda a llegar antes a un código que funciona y se entiende, el tiempo que ahorro va a las partes que necesitan más reflexión. A nadie que use una aplicación le importa si una función se escribió a mano.'],
+                ['p', 'Dibujar no funciona así para mí. El objetivo no es solo terminar con una imagen, sino el tiempo que paso haciéndola: las decisiones, las correcciones, las líneas que la próxima vez haría distinto. Si otra cosa hiciera esa parte, tendría una imagen, pero no habría dibujado nada. El proceso es la razón por la que lo hago.'],
+                ['p', 'Entonces la distinción no es que la IA sea buena en un lugar y mala en otro. Es que la misma herramienta significa algo distinto según por qué estás haciendo el trabajo.'],
+                ['h', 'Las preocupaciones son reales'],
+                ['p', 'Sería fácil quedarse ahí y llamarlo una preferencia personal, pero la conversación más grande no es sobre pasatiempos. Las imágenes generadas con IA ya se usan comercialmente, y tengo sentimientos encontrados al respecto.'],
+                ['p', 'Los artistas a quienes esto les preocupa no están exagerando. Muchos de estos sistemas se entrenaron con obras de personas a las que nunca se les preguntó. La ilustración, el arte conceptual y el diseño son formas de ganarse la vida, y cuando un cliente puede conseguir algo “suficientemente bueno” por una fracción del costo, la presión cae sobre quienes pasaron años aprendiendo el oficio. Esas preocupaciones merecen tomarse en serio, no responderse con “así es el progreso”.'],
+                ['p', 'Trabajar en tecnología no me vuelve neutral en esto. Si acaso, me hace más consciente de que las herramientas no se construyen en el vacío y de que quién se beneficia de ellas es una decisión, no una ley de la naturaleza.'],
+                ['h', 'Otro cambio tecnológico'],
+                ['p', 'Al mismo tiempo, cuesta no verlo como uno más de los grandes cambios que siguen transformando cómo se hacen las cosas. Cada uno de ellos cambió qué era barato y qué era escaso.'],
+                ['p', 'Esa es la parte que me parece interesante. Cuando algo se vuelve abundante, lo que sigue siendo escaso tiende a notarse más. Si las imágenes generadas terminan en todas partes (en avisos, redes y bancos de imágenes), el trabajo que claramente viene de una persona, con su tiempo y su mano, podría empezar a destacar más en vez de menos.'],
+                ['h', 'Lo que una persona le aporta a una obra'],
+                ['p', 'Si eso pasa, el valor probablemente no estará en competir con la IA en su propio terreno: velocidad, volumen, pulido. Esa es una carrera que una persona no está hecha para ganar, y no creo que los artistas deban tener que correrla. Lo que una persona puede ofrecer es otra cosa:'],
                 ['ul', [
-                    '`nexus.direct` → `usuario.registrado` → `nexus.notificaciones.queue`',
-                    '`nexus.direct` → `orden.creada` → `nexus.tickets.queue`',
-                    '`nexus.topic` → `producto.#` → `nexus.inventario.queue`',
-                    'Rechazado o expirado → `nexus.dlx` → su `*.dlq` correspondiente',
+                    '**Decisiones visibles.** Por qué esta composición, este color, esto que se dejó fuera. Las decisiones llevan un punto de vista.',
+                    '**Imperfección.** Una línea temblorosa o una textura dispareja son evidencia de que alguien estuvo ahí.',
+                    '**Experiencia.** Las personas dibujan a partir de lo que han vivido, observado y querido, y eso se nota.',
+                    '**Tiempo.** Saber que algo tomó horas, o años de práctica, cambia cómo lo miramos.',
                 ]],
-                ['h', 'Quitarle la decisión al framework'],
-                ['p', 'Por defecto, Spring AMQP confirma automáticamente: si el método del listener termina, el mensaje recibe ACK; si lanza una excepción, se rechaza y, por defecto, se reencola. Esa segunda parte es la peligrosa. El servicio cambia a confirmación manual y desactiva el reencolado al rechazar:'],
-                ['code', 'yaml', CODE.listener],
-                ['p', '`prefetch: 1` hace que el broker entregue un mensaje a la vez a cada consumidor, así un mensaje lento o con error no retiene a un lote de otros. `default-requeue-rejected: false` es la red de seguridad: si algo escapa del manejo del propio código (por ejemplo, un JSON que no se puede convertir al tipo del evento), el contenedor lo rechaza sin reencolar y el dead-letter exchange lo lleva a la DLQ.'],
-                ['h', 'Una tabla de decisiones, una clase'],
-                ['p', 'Los tres consumidores delegan en un único helper, `ProcesadorConAck`, para que la política de ACK/NACK viva en un solo lugar. Sus reglas, tal como están documentadas en la clase:'],
-                ['ul', [
-                    '**Procesamiento exitoso** → `basicAck`; el mensaje se consume.',
-                    '**Dato inválido** (`MensajeInvalidoException`) → `basicNack` sin reencolar; directo a la DLQ.',
-                    '**Error transitorio con intentos disponibles** → se republica una copia con `x-reintentos + 1` y luego `basicAck` del original.',
-                    '**Error transitorio con intentos agotados** → `basicNack` sin reencolar; a la DLQ.',
-                ]],
-                ['code', 'java', CODE.procesar],
-                ['p', 'Dos detalles hacen que funcione. El primero es separar errores inválidos de errores transitorios: un mensaje sin correo nunca va a funcionar, así que va directo a la DLQ en vez de gastar tres intentos. El segundo es que los reintentos se cuentan en un header propio. El reencolado de RabbitMQ no trae un contador confiable, así que el servicio publica una copia en la misma cola con el contador incrementado y solo después confirma el original. El máximo viene de la configuración (`max-reintentos: 3`).'],
-                ['p', 'La copia se publica a través del exchange por defecto (`""`) usando el nombre de la cola como routing key. Así llega exactamente a esa cola; publicarla en el exchange original la entregaría también a cualquier otra cola enlazada con la misma clave, duplicando trabajo en otra parte.'],
-                ['h', 'Cómo se ve un consumidor'],
-                ['code', 'java', CODE.consumer],
-                ['p', 'El listener solo declara la regla de negocio y qué fallos son permanentes. La segunda verificación es un gancho de prueba intencional: un nombre que contiene `#falla` simula una caída del servidor de correo, lo que permite ver cómo un mensaje pasa por sus reintentos y termina en la DLQ.'],
-                ['h', 'Vigilar las DLQ'],
-                ['p', 'Una dead-letter queue que nadie revisa es solo una forma más lenta de perder datos. El servicio incluye un `DlqMonitor` programado que revisa todas las DLQ cada 30 segundos y registra una advertencia cuando alguna tiene mensajes:'],
-                ['code', 'java', CODE.monitor],
-                ['h', 'Compromisos que conviene conocer'],
-                ['ul', [
-                    '**Republicar y luego confirmar no es atómico.** Si el consumidor se cae entre ambas llamadas, el broker vuelve a entregar el original mientras la copia también existe, así que el mismo evento puede procesarse dos veces. Los consumidores deberían ser idempotentes o registrar los IDs de los eventos ya procesados.',
-                    '**Los reintentos inmediatos no esperan.** Republicar al instante sirve para fallas breves. Para caídas más largas, un retardo (por ejemplo, una cola de espera con TTL) le da tiempo al sistema de destino para recuperarse.',
-                    '**Los reintentos cambian el orden.** Un mensaje reintentado vuelve al final de la cola, así que los eventos de una misma entidad pueden procesarse desordenados.',
-                ]],
-                ['h', 'Conclusión'],
-                ['p', 'Decide de forma explícita qué significa cada fallo. Separa los errores que nunca van a funcionar de los que podrían, pon un límite a los reintentos, dale a cada cola un destino de dead-letter y asegúrate de que alguien se entere cuando ese destino se llena. El código necesario es poco (una clase helper y unas líneas de configuración), pero transforma “el mensaje desapareció” en “el mensaje está en la DLQ, y esta es la razón”.'],
+                ['p', 'Algunos artistas ya apuestan por esto compartiendo bocetos, videos del proceso y trabajos en curso. Mostrar cómo se hizo algo pasa a ser parte de la obra, y es justamente la parte que no se puede generar.'],
+                ['h', 'Lo que no tengo claro'],
+                ['p', 'No quiero que esto suene más ordenado de lo que es. Una nueva valoración del arte hecho a mano, si llega, no va a pagarle el arriendo a nadie automáticamente. Podría valorarla un público más pequeño mientras el trabajo comercial sigue reduciéndose. Y no es justo poner toda la carga en los artistas para que se “diferencien” de sistemas construidos en parte con su propio trabajo.'],
+                ['p', 'Así que esto no es una predicción, ni una solución. Es una posibilidad que me da esperanza: que mientras más contenido generado nos rodee, más claro quede lo que aporta una persona.'],
+                ['h', 'Dónde quedo yo'],
+                ['p', 'Voy a seguir usando IA en el trabajo, donde me ayuda a hacerlo mejor. Y voy a seguir dibujando a mano, porque ahí la parte lenta es la que quiero. Sostener ambas cosas a la vez no me parece contradictorio. Me parece tomarse en serio tanto lo que la tecnología puede hacer como lo que no puede reemplazar.'],
             ],
         },
     },
@@ -843,23 +794,19 @@ const CONTENT = {
             lead: 'I build Java and Spring Boot backends and the React interfaces on top of them — with extra attention to the parts that tend to break: authentication, messaging and tests.',
             meta: 'Junior developer at RockTruck · 3rd-year Software Engineering student at Duoc UC',
             primary: 'View projects',
-            secondary: 'Read the blog',
             portraitAlt: 'Pixel-art portrait of Carla Prado',
-            status: 'Full-stack · Year 03',
             speaker: 'Carla',
-            line: 'Hi! Right now I’m building corporate software at RockTruck while I finish my engineering degree. Where do you want to go?',
+            line: 'Hi! Where would you like to start?',
             skipHint: 'Click to skip',
             quick: 'Quick links',
-            choices: { projects: 'Projects', blog: 'Blog', contact: 'Contact' },
+            choices: { about: 'About me', blog: 'Blog', contact: 'Contact' },
         },
         about: {
-            kicker: 'About',
+            kicker: 'Profile',
             title: 'About me',
-            paragraphs: [
-                'I’m a developer based in Santiago, Chile. Since January 2026 I’ve been working as a junior software developer (trainee) at RockTruck, building corporate software for a logistics company, while I finish my Software Engineering degree at Duoc UC.',
-                'My coursework and projects lean towards the backend: Spring Boot services secured with JWT and OAuth 2.0, message queues with RabbitMQ, relational databases, and the React frontends that sit on top of them. I also took an elective in cybersecurity, where I worked with Wireshark and Kali Linux. Manjaro Linux is my everyday system, which keeps me in the terminal and learning bash.',
-                'Before code, I trained in art and graphic design (Illustrator, Photoshop, InDesign), so I care about how an interface reads — not only whether it works.',
-            ],
+            intro: 'I have a background in art and graphic design, so I care about how an interface reads, not only whether it works. Most of my projects lean towards the backend — Java, Spring Boot and relational databases — and an elective in cybersecurity got me working with Wireshark and Kali Linux. Outside work and class, I draw by hand.',
+            art: 'See my artwork',
+            artNote: 'Hand-drawn illustration · Instagram',
             experienceTitle: 'Experience',
             experience: [
                 { role: 'Junior Software Developer (Trainee)', org: 'RockTruck', type: 'Internship contract', period: 'Jan 2026 — Present', note: 'Building corporate software for a logistics company.' },
@@ -880,7 +827,6 @@ const CONTENT = {
                 { name: 'Python Essentials 1', issuer: 'Cisco', date: 'Jun 2024' },
             ],
         },
-        skills: { kicker: 'Skills' },
         stackSection: {
             kicker: 'Know-how',
             title: 'Tech Stack',
@@ -903,9 +849,10 @@ const CONTENT = {
             { title: 'Analytics', text: 'Turning data into charts that support decisions.' },
         ],
         projects: {
-            kicker: 'Projects',
+            kicker: 'Portfolio',
             title: 'Selected work',
-            subtitle: 'Five projects from my GitHub, each showing a different part of how I work — from security and messaging to optimisation, interfaces and mobile.',
+            subtitle: 'Pick a project to see what it does and what makes it interesting.',
+            list: 'Projects',
             why: 'Why',
             highlights: 'Highlights',
             links: { repo: 'Repository', demo: 'Live demo', front: 'Frontend repo', back: 'Backend repo' },
@@ -913,8 +860,8 @@ const CONTENT = {
         },
         blog: {
             kicker: 'Blog',
-            title: 'Notes from my projects',
-            subtitle: 'Technical decisions from my own repositories, explained with the real code.',
+            title: 'Writing',
+            subtitle: 'A personal take on AI and art, and a technical deep dive into one of my projects.',
             read: 'Read article',
             minutes: (n) => `${n} min read`,
             back: 'Back to blog',
@@ -925,16 +872,16 @@ const CONTENT = {
             kicker: 'Contact',
             title: 'Get in touch',
             subtitle: 'Open to junior developer roles in Gran Santiago, on-site or hybrid.',
-            echo: 'Hello',
-            whoami: 'Carla Prado — software developer',
-            location: 'Gran Santiago, Chile · on-site / hybrid',
-            pending: 'LinkedIn and email coming soon — GitHub is the best place to find me for now.',
-            labels: { github: 'GitHub', linkedin: 'LinkedIn', email: 'Email' },
+            links: {
+                github: ['GitHub', 'Code and course projects'],
+                linkedin: ['LinkedIn', 'Experience and education'],
+                art: ['Artwork', 'Hand-drawn illustration on Instagram'],
+            },
+            manjaro: ['Manjaro Linux', 'My everyday system · bash'],
         },
         footer: {
-            walkerHint: 'Click the path, or focus it and use ← →, to move the ghost.',
+            walkerHint: 'Click the path to move the ghost.',
             walkerLabel: 'Move the ghost',
-            built: 'Designed and built by Carla Prado with React, Tailwind CSS and Vite.',
             top: 'Back to top',
         },
         dateLocale: 'en-GB',
@@ -949,23 +896,19 @@ const CONTENT = {
             lead: 'Construyo backends con Java y Spring Boot y las interfaces en React que los usan, con especial atención a lo que suele fallar: autenticación, mensajería y pruebas.',
             meta: 'Desarrolladora junior en RockTruck · 3.er año de Ingeniería en Informática en Duoc UC',
             primary: 'Ver proyectos',
-            secondary: 'Leer el blog',
             portraitAlt: 'Retrato en pixel art de Carla Prado',
-            status: 'Full-stack · Año 03',
             speaker: 'Carla',
-            line: '¡Hola! Hoy desarrollo software corporativo en RockTruck mientras termino Ingeniería. ¿A dónde quieres ir?',
+            line: '¡Hola! ¿Por dónde quieres empezar?',
             skipHint: 'Haz clic para saltar',
             quick: 'Accesos rápidos',
-            choices: { projects: 'Proyectos', blog: 'Blog', contact: 'Contacto' },
+            choices: { about: 'Sobre mí', blog: 'Blog', contact: 'Contacto' },
         },
         about: {
-            kicker: 'Sobre mí',
+            kicker: 'Perfil',
             title: 'Sobre mí',
-            paragraphs: [
-                'Soy desarrolladora y vivo en Santiago de Chile. Desde enero de 2026 trabajo como desarrolladora de software junior (trainee) en RockTruck, creando software corporativo para una empresa de logística, mientras termino Ingeniería en Informática en Duoc UC.',
-                'Mis ramos y proyectos se inclinan hacia el backend: servicios Spring Boot protegidos con JWT y OAuth 2.0, colas de mensajes con RabbitMQ, bases de datos relacionales y los frontends en React que se apoyan en ellos. También tomé un electivo de ciberseguridad, donde trabajé con Wireshark y Kali Linux. Manjaro Linux es mi sistema de uso diario, lo que me mantiene en la terminal y aprendiendo bash.',
-                'Antes del código me formé en arte y diseño gráfico (Illustrator, Photoshop, InDesign), así que me importa cómo se lee una interfaz, no solo que funcione.',
-            ],
+            intro: 'Tengo formación en arte y diseño gráfico, así que me importa cómo se lee una interfaz, no solo que funcione. La mayoría de mis proyectos se inclinan hacia el backend (Java, Spring Boot y bases de datos relacionales), y un electivo de ciberseguridad me llevó a trabajar con Wireshark y Kali Linux. Fuera del trabajo y la universidad, dibujo a mano.',
+            art: 'Ver mis ilustraciones',
+            artNote: 'Ilustración hecha a mano · Instagram',
             experienceTitle: 'Experiencia',
             experience: [
                 { role: 'Desarrolladora de Software Junior (Trainee)', org: 'RockTruck', type: 'Contrato de práctica', period: 'ene. 2026 — Actualidad', note: 'Creando software corporativo para una empresa de logística.' },
@@ -986,7 +929,6 @@ const CONTENT = {
                 { name: 'Python Essentials 1', issuer: 'Cisco', date: 'jun. 2024' },
             ],
         },
-        skills: { kicker: 'Habilidades' },
         stackSection: {
             kicker: 'Know-how',
             title: 'Stack Tecnológico',
@@ -1009,9 +951,10 @@ const CONTENT = {
             { title: 'Analytics', text: 'Convertir datos en gráficos que apoyan la toma de decisiones.' },
         ],
         projects: {
-            kicker: 'Proyectos',
+            kicker: 'Portafolio',
             title: 'Trabajo seleccionado',
-            subtitle: 'Cinco proyectos de mi GitHub; cada uno muestra una parte distinta de cómo trabajo, desde seguridad y mensajería hasta optimización, interfaces y desarrollo móvil.',
+            subtitle: 'Elige un proyecto para ver qué hace y qué lo hace interesante.',
+            list: 'Proyectos',
             why: 'Para qué',
             highlights: 'Lo destacado',
             links: { repo: 'Repositorio', demo: 'Demo en vivo', front: 'Repo frontend', back: 'Repo backend' },
@@ -1019,8 +962,8 @@ const CONTENT = {
         },
         blog: {
             kicker: 'Blog',
-            title: 'Notas de mis proyectos',
-            subtitle: 'Decisiones técnicas de mis propios repositorios, explicadas con el código real.',
+            title: 'Escritos',
+            subtitle: 'Una mirada personal sobre la IA y el arte, y un análisis técnico de uno de mis proyectos.',
             read: 'Leer artículo',
             minutes: (n) => `${n} min de lectura`,
             back: 'Volver al blog',
@@ -1031,16 +974,16 @@ const CONTENT = {
             kicker: 'Contacto',
             title: 'Conversemos',
             subtitle: 'Abierta a roles de desarrolladora junior en Gran Santiago, presencial o híbrido.',
-            echo: 'Hola',
-            whoami: 'Carla Prado — desarrolladora de software',
-            location: 'Gran Santiago, Chile · presencial / híbrido',
-            pending: 'LinkedIn y correo, pronto. Por ahora, GitHub es el mejor lugar para encontrarme.',
-            labels: { github: 'GitHub', linkedin: 'LinkedIn', email: 'Correo' },
+            links: {
+                github: ['GitHub', 'Código y proyectos de la carrera'],
+                linkedin: ['LinkedIn', 'Experiencia y formación'],
+                art: ['Ilustración', 'Dibujo a mano, en Instagram'],
+            },
+            manjaro: ['Manjaro Linux', 'Mi sistema de uso diario · bash'],
         },
         footer: {
-            walkerHint: 'Haz clic en el camino, o enfócalo y usa ← →, para mover al fantasma.',
+            walkerHint: 'Haz clic en el camino para mover al fantasma.',
             walkerLabel: 'Mover al fantasma',
-            built: 'Diseñado y desarrollado por Carla Prado con React, Tailwind CSS y Vite.',
             top: 'Volver arriba',
         },
         dateLocale: 'es-CL',
@@ -1120,6 +1063,11 @@ function useActiveSection(enabled) {
 /* ═══════════════════════════════════════════════════════════
    Piezas pequeñas
    ═══════════════════════════════════════════════════════════ */
+
+/* Cada sección ocupa una pantalla en tablet y escritorio; en móvil crece según su contenido.
+   El padding superior deja espacio para la navbar fija. */
+const SCREEN = 'flex flex-col justify-center pb-14 pt-24 md:min-h-svh'
+
 function Container({ children, className = '' }) {
     return <div className={`mx-auto w-full max-w-6xl px-5 sm:px-8 ${className}`}>{children}</div>
 }
@@ -1139,13 +1087,13 @@ function WinBar({ title }) {
 
 function SectionHeading({ num, kicker, title, subtitle }) {
     return (
-        <header className="mb-12 max-w-3xl">
+        <header className="mb-9 max-w-3xl">
             <p className="kicker flex items-center gap-2.5">
                 <Sprite name="spark" className="h-3.5 w-3.5" />
                 {num} // {kicker}
             </p>
-            <h2 className="display mt-4 text-[clamp(2.1rem,5.5vw,3.6rem)]">{title}</h2>
-            {subtitle && <p className="mt-5 max-w-2xl text-[1.04rem] leading-relaxed t-ink2">{subtitle}</p>}
+            <h2 className="display mt-3 text-[clamp(1.9rem,4.2vw,3rem)]">{title}</h2>
+            {subtitle && <p className="mt-3 max-w-2xl leading-relaxed t-ink2">{subtitle}</p>}
         </header>
     )
 }
@@ -1161,19 +1109,14 @@ const ICONS = {
             <path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM3.5 8.75h3.9V21H3.5zM10 8.75h3.74v1.68h.05c.52-.94 1.8-1.93 3.7-1.93 3.96 0 4.69 2.5 4.69 5.76V21h-3.9v-6.13c0-1.46-.03-3.34-2.1-3.34-2.1 0-2.42 1.58-2.42 3.23V21H10z" />
         </svg>
     ),
-    email: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.6" />
-            <path d="M3.5 6.5L12 13l8.5-6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-    ),
+    art: <Sprite name="frame" className="h-5 w-6" />,
 }
 
 const CONTACT_LINKS = [
-    { id: 'github', href: GITHUB_URL, text: `github.com/${GITHUB_USER}` },
-    { id: 'linkedin', href: LINKEDIN_URL, text: LINKEDIN_URL?.replace(/^https?:\/\/(www\.)?/, '') },
-    { id: 'email', href: EMAIL && `mailto:${EMAIL}`, text: EMAIL },
-].filter((c) => c.href)
+    { id: 'github', href: GITHUB_URL, text: 'github.com/pear1s1ug' },
+    { id: 'linkedin', href: LINKEDIN_URL, text: 'in/carla-prado' },
+    { id: 'art', href: ART_URL, text: '@mauve.aphelion' },
+]
 
 /* Texto con `código` y **negrita** */
 function Rich({ text }) {
@@ -1302,12 +1245,12 @@ function Typewriter({ text, hint }) {
 
     useEffect(() => {
         if (done) return
-        const id = setTimeout(() => setCount((c) => c + 1), 26)
+        const id = setTimeout(() => setCount((c) => c + 1), 32)
         return () => clearTimeout(id)
     }, [count, done])
 
     return (
-        <p className="mono min-h-[4.9em] text-[0.86rem] leading-relaxed t-ink" onClick={() => setCount(text.length)} title={done ? undefined : hint}>
+        <p className="mono min-h-[1.7em] text-[0.88rem] leading-relaxed t-ink" onClick={() => setCount(text.length)} title={done ? undefined : hint}>
             <span className="sr-only">{text}</span>
             <span aria-hidden="true">
                 {text.slice(0, count)}
@@ -1319,7 +1262,7 @@ function Typewriter({ text, hint }) {
 
 function Hero({ t, lang }) {
     return (
-        <section id="top" className="dots relative overflow-hidden pb-20 pt-28 sm:pt-36">
+        <section id="top" className="dots relative flex min-h-svh flex-col justify-center overflow-hidden pb-14 pt-24">
             <Container className="grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
                 <div>
                     <p className="kicker rise">▸ {t.hero.kicker}</p>
@@ -1334,11 +1277,11 @@ function Hero({ t, lang }) {
                         <a href="#projects" className="btn btn-primary">
                             {t.hero.primary} <span aria-hidden="true">→</span>
                         </a>
-                        <a href="#blog" className="btn">
-                            {t.hero.secondary}
-                        </a>
                         <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn btn-icon" aria-label="GitHub">
                             {ICONS.github}
+                        </a>
+                        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-icon" aria-label="LinkedIn">
+                            {ICONS.linkedin}
                         </a>
                     </div>
                 </div>
@@ -1354,12 +1297,13 @@ function Hero({ t, lang }) {
                         <p className="pixel mb-2 text-[0.72rem] t-pink">{t.hero.speaker}</p>
                         <Typewriter key={lang} text={t.hero.line} hint={t.hero.skipHint} />
                         <nav aria-label={t.hero.quick} className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-                            <a href="#projects" className="choice">{t.hero.choices.projects}</a>
-                            <a href="#blog" className="choice">{t.hero.choices.blog}</a>
-                            <a href="#contact" className="choice">{t.hero.choices.contact}</a>
+                            {Object.entries(t.hero.choices).map(([id, label]) => (
+                                <a key={id} href={`#${id}`} className="choice">
+                                    {label}
+                                </a>
+                            ))}
                         </nav>
                     </div>
-                    <p className="pixel mt-4 text-center text-[0.66rem] t-ink3">◆ {t.hero.status}</p>
                 </div>
             </Container>
         </section>
@@ -1372,44 +1316,51 @@ function Hero({ t, lang }) {
 function About({ t }) {
     const a = t.about
     return (
-        <section id="about" className="py-24">
+        <section id="about" className={SCREEN}>
             <Container>
                 <SectionHeading num="01" kicker={a.kicker} title={a.title} />
                 <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
                     <div>
-                        <div className="space-y-5 text-[1.04rem] leading-[1.8] t-ink2">
-                            {a.paragraphs.map((p) => (
-                                <p key={p.slice(0, 24)}>{p}</p>
-                            ))}
-                        </div>
+                        <p className="max-w-xl text-[1.06rem] leading-[1.8] t-ink2">{a.intro}</p>
+                        <a href={ART_URL} target="_blank" rel="noopener noreferrer" className="win lift mt-6 inline-flex items-center gap-4 py-3 pl-3 pr-5">
+                            <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-[var(--line)] bg-[var(--bg)]">
+                                <Sprite name="frame" className="h-7 w-8" />
+                            </span>
+                            <span>
+                                <span className="pixel block text-[0.72rem] t-pink">
+                                    {a.art} <span aria-hidden="true">↗</span>
+                                </span>
+                                <span className="mt-1 block text-[0.88rem] t-ink3">{a.artNote}</span>
+                            </span>
+                        </a>
 
-                        <h3 className="pixel mt-14 text-[0.8rem] t-lilac">{a.experienceTitle}</h3>
-                        <ol className="mt-6 border-l border-[var(--line)]">
+                        <h3 className="pixel mt-9 text-[0.78rem] t-lilac">{a.experienceTitle}</h3>
+                        <ol className="mt-5 border-l border-[var(--line)]">
                             {a.experience.map((e, i) => (
-                                <li key={e.role} className="relative pb-8 pl-7 last:pb-0">
+                                <li key={e.role} className="relative pb-6 pl-7 last:pb-0">
                                     <span aria-hidden="true" className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] ${i === 0 ? 'bg-[var(--pink)]' : 'border border-[var(--line)] bg-[var(--bg)]'}`} />
-                                    <p className="mono text-[0.74rem] t-ink3">{e.period}</p>
-                                    <h4 className="mt-1 text-[1.06rem] font-semibold t-ink">{e.role}</h4>
-                                    <p className="mt-0.5 text-[0.95rem] t-ink2">
+                                    <p className="mono text-[0.72rem] t-ink3">{e.period}</p>
+                                    <h4 className="mt-0.5 font-semibold t-ink">{e.role}</h4>
+                                    <p className="text-[0.92rem] t-ink2">
                                         <span className={i === 0 ? 't-pink' : undefined}>{e.org}</span>
                                         {e.type && <span className="t-ink3"> · {e.type}</span>}
                                     </p>
-                                    {e.note && <p className="mt-2 text-[0.95rem] t-ink2">{e.note}</p>}
+                                    {e.note && <p className="mt-1 text-[0.92rem] t-ink2">{e.note}</p>}
                                 </li>
                             ))}
                         </ol>
                     </div>
 
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-6">
                         <div className="win ticks">
                             <WinBar title={`${a.educationTitle.toLowerCase()}.txt`} />
                             <ul className="divide-y divide-[var(--line-soft)]">
                                 {a.education.map((ed) => (
-                                    <li key={ed.degree} className="p-5">
-                                        <p className="mono text-[0.74rem] t-ink3">{ed.period}</p>
-                                        <h4 className="mt-1 font-semibold leading-snug t-ink">{ed.degree}</h4>
-                                        <p className="mt-0.5 text-[0.92rem] t-pink">{ed.school}</p>
-                                        <p className="mt-2 text-[0.92rem] leading-relaxed t-ink2">{ed.note}</p>
+                                    <li key={ed.degree} className="px-5 py-3.5">
+                                        <p className="mono text-[0.72rem] t-ink3">{ed.period}</p>
+                                        <h4 className="mt-0.5 font-semibold leading-snug t-ink">{ed.degree}</h4>
+                                        <p className="text-[0.9rem] t-pink">{ed.school}</p>
+                                        <p className="mt-1.5 text-[0.9rem] leading-relaxed t-ink2">{ed.note}</p>
                                     </li>
                                 ))}
                             </ul>
@@ -1418,12 +1369,11 @@ function About({ t }) {
                             <WinBar title={`${a.certsTitle.toLowerCase()}.txt`} />
                             <ul className="divide-y divide-[var(--line-soft)]">
                                 {a.certs.map((c) => (
-                                    <li key={c.name} className="flex items-baseline justify-between gap-4 px-5 py-3.5">
-                                        <span>
-                                            <span className="block text-[0.94rem] leading-snug t-ink">{c.name}</span>
-                                            <span className="text-[0.84rem] t-ink3">{c.issuer}</span>
+                                    <li key={c.name} className="flex items-baseline justify-between gap-4 px-5 py-2.5">
+                                        <span className="text-[0.9rem] leading-snug t-ink">
+                                            {c.name} <span className="t-ink3">· {c.issuer}</span>
                                         </span>
-                                        <span className="mono shrink-0 text-[0.72rem] t-ink3">{c.date}</span>
+                                        <span className="mono shrink-0 text-[0.7rem] t-ink3">{c.date}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -1441,16 +1391,16 @@ function About({ t }) {
 function Skills({ t }) {
     const generalItems = GENERAL_META.map((m, i) => ({ ...m, ...t.general[i] }))
     return (
-        <section id="skills" className="border-y border-[var(--line-soft)] bg-[var(--bg2)] py-24">
+        <section id="skills" className={`${SCREEN} border-y border-[var(--line-soft)] bg-[var(--bg2)]`}>
             <Container>
-                <SectionHeading num="02" kicker={`${t.skills.kicker} · ${t.stackSection.kicker}`} title={t.stackSection.title} subtitle={t.stackSection.subtitle} />
+                <SectionHeading num="02" kicker={t.stackSection.kicker} title={t.stackSection.title} subtitle={t.stackSection.subtitle} />
 
-                <div className="grid gap-8 md:grid-cols-3">
+                <div className="grid gap-7 md:grid-cols-3">
                     {STACK_META.map((cat) => (
                         <div key={cat.id} className="win ticks">
                             <WinBar title={`${cat.id}.txt`} />
-                            <div className="p-6">
-                                <h3 className="mb-5 flex items-center gap-2.5 text-[1.05rem] font-semibold t-ink">
+                            <div className="p-5">
+                                <h3 className="mb-4 flex items-center gap-2.5 font-semibold t-ink">
                                     <span aria-hidden="true" className={`h-2.5 w-2.5 ${cat.dot}`} />
                                     {t.stackSection.categories[cat.id]}
                                 </h3>
@@ -1466,17 +1416,19 @@ function Skills({ t }) {
                     ))}
                 </div>
 
-                <div className="mt-20">
+                <div className="mt-12 flex flex-wrap items-baseline gap-x-5 gap-y-2">
+                    <h3 className="display text-[clamp(1.35rem,2.6vw,1.75rem)]">{t.generalSection.title}</h3>
                     <p className="kicker">{t.generalSection.kicker}</p>
-                    <h3 className="display mt-3 text-[clamp(1.6rem,3.5vw,2.3rem)]">{t.generalSection.title}</h3>
-                    <p className="mt-3 t-ink2">{t.generalSection.subtitle}</p>
+                    <p className="w-full t-ink2">{t.generalSection.subtitle}</p>
                 </div>
-                <ul className="mt-10 grid gap-px border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-4">
+                <ul className="mt-6 grid gap-px border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-4">
                     {generalItems.map((g) => (
-                        <li key={g.id} className="bg-[var(--panel)] p-6 transition-colors duration-200 hover:bg-[var(--panel2)]">
-                            <div className="mb-4 t-lilac">{g.icon}</div>
-                            <h4 className="mb-1.5 font-semibold t-ink">{g.title}</h4>
-                            <p className="text-[0.9rem] leading-relaxed t-ink2">{g.text}</p>
+                        <li key={g.id} className="bg-[var(--panel)] px-5 py-4 transition-colors duration-200 hover:bg-[var(--panel2)]">
+                            <div className="mb-1.5 flex items-center gap-2.5">
+                                <span className="t-lilac">{g.icon}</span>
+                                <h4 className="font-semibold t-ink">{g.title}</h4>
+                            </div>
+                            <p className="text-[0.88rem] leading-relaxed t-ink2">{g.text}</p>
                         </li>
                     ))}
                 </ul>
@@ -1486,75 +1438,92 @@ function Skills({ t }) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Proyectos
+   Proyectos: menú de selección + panel de detalle
    ═══════════════════════════════════════════════════════════ */
-function ProjectCard({ project, t, lang }) {
-    const c = project[lang]
-    return (
-        <article className={`win ticks lift flex min-w-0 flex-col ${project.featured ? 'lg:col-span-2' : ''}`}>
-            <WinBar title={project.slug} />
-            <div className="flex flex-1 flex-col p-6 sm:p-7">
-                <div className="flex items-start gap-5">
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center border border-[var(--line)] bg-[var(--bg)]">
-                        <Sprite name={project.sprite} className="h-10 w-10" />
-                    </div>
-                    <div>
-                        <h3 className="display text-[clamp(1.35rem,3vw,1.7rem)]">{project.name}</h3>
-                        <p className="pixel mt-2 text-[0.66rem] leading-relaxed t-ink3">{c.context}</p>
-                    </div>
-                </div>
-
-                <div className={project.featured ? 'mt-6 grid gap-x-10 gap-y-6 lg:grid-cols-2' : 'mt-6'}>
-                    <div>
-                        <p className="leading-relaxed t-ink2">{c.description}</p>
-                        <p className="mt-4 text-[0.94rem] leading-relaxed t-ink2">
-                            <span className="pixel mr-2 text-[0.68rem] t-pink">{t.projects.why}:</span>
-                            {c.purpose}
-                        </p>
-                    </div>
-                    <div className={project.featured ? '' : 'mt-6'}>
-                        <p className="pixel text-[0.68rem] t-lilac">{t.projects.highlights}</p>
-                        <ul className="prose mt-3 text-[0.94rem]">
-                            {c.highlights.map((h) => (
-                                <li key={h}>{h}</li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-
-                <ul className="mt-auto flex flex-wrap gap-2 pt-6" aria-label="Tech">
-                    {project.tech.map((tech) => (
-                        <li key={tech} className="chip">
-                            {tech}
-                        </li>
-                    ))}
-                </ul>
-                <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 border-t border-[var(--line-soft)] pt-5">
-                    {project.links.map((l) => (
-                        <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="arrow-link">
-                            {t.projects.links[l.kind]} <span aria-hidden="true">↗</span>
-                        </a>
-                    ))}
-                </div>
-            </div>
-        </article>
-    )
-}
-
 function Projects({ t, lang }) {
+    const [selected, setSelected] = useState(0)
+    const tabs = useRef([])
+    const project = PROJECTS[selected]
+    const c = project[lang]
+
+    const onKeyDown = (e) => {
+        const delta = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]
+        if (!delta) return
+        e.preventDefault()
+        const next = (selected + delta + PROJECTS.length) % PROJECTS.length
+        setSelected(next)
+        tabs.current[next]?.focus()
+    }
+
     return (
-        <section id="projects" className="py-24">
+        <section id="projects" className={SCREEN}>
             <Container>
                 <SectionHeading num="03" kicker={t.projects.kicker} title={t.projects.title} subtitle={t.projects.subtitle} />
-                <div className="grid gap-8 lg:grid-cols-2">
-                    {PROJECTS.map((p) => (
-                        <ProjectCard key={p.id} project={p} t={t} lang={lang} />
-                    ))}
-                </div>
-                <div className="mt-12 flex justify-center">
-                    <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn">
-                        {ICONS.github} {t.projects.more}
-                    </a>
+                <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)]">
+                    <div role="tablist" aria-label={t.projects.list} aria-orientation="vertical" onKeyDown={onKeyDown} className="flex flex-col gap-2.5">
+                        {PROJECTS.map((p, i) => (
+                            <button
+                                key={p.id}
+                                ref={(el) => (tabs.current[i] = el)}
+                                type="button"
+                                role="tab"
+                                id={`tab-${p.id}`}
+                                aria-selected={i === selected}
+                                aria-controls="project-panel"
+                                tabIndex={i === selected ? 0 : -1}
+                                onClick={() => setSelected(i)}
+                                className={`proj-tab ${i === selected ? 'is-active' : ''}`}
+                            >
+                                <span className="mark" aria-hidden="true">▶</span>
+                                <Sprite name={p.sprite} className="h-7 w-7 shrink-0" />
+                                <span className="min-w-0">
+                                    <span className="block font-semibold t-ink">{p.name}</span>
+                                    <span className="block truncate text-[0.78rem] t-ink3">{p.tech.slice(0, 3).join(' · ')}</span>
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+
+                    <article id="project-panel" role="tabpanel" aria-labelledby={`tab-${project.id}`} className="win ticks min-w-0">
+                        <WinBar title={project.slug} />
+                        <div key={project.id} className="fade-in p-6 sm:p-7">
+                            <h3 className="display text-[clamp(1.35rem,3vw,1.75rem)]">{project.name}</h3>
+                            <p className="pixel mt-2 text-[0.66rem] leading-relaxed t-ink3">{c.context}</p>
+
+                            <div className="mt-5 grid gap-x-9 gap-y-5 md:grid-cols-2">
+                                <div>
+                                    <p className="leading-relaxed t-ink2">{c.description}</p>
+                                    <p className="mt-4 text-[0.93rem] leading-relaxed t-ink2">
+                                        <span className="pixel mr-2 text-[0.66rem] t-pink">{t.projects.why}:</span>
+                                        {c.purpose}
+                                    </p>
+                                    <ul className="mt-5 flex flex-wrap gap-2" aria-label="Tech">
+                                        {project.tech.map((tech) => (
+                                            <li key={tech} className="chip">
+                                                {tech}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p className="pixel text-[0.66rem] t-lilac">{t.projects.highlights}</p>
+                                    <ul className="prose mt-3 text-[0.92rem]">
+                                        {c.highlights.map((h) => (
+                                            <li key={h}>{h}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div className="mt-3 flex flex-wrap gap-x-6 gap-y-3 border-t border-[var(--line-soft)] pt-4">
+                                {project.links.map((l) => (
+                                    <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="arrow-link">
+                                        {t.projects.links[l.kind]} <span aria-hidden="true">↗</span>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </Container>
         </section>
@@ -1566,7 +1535,7 @@ function Projects({ t, lang }) {
    ═══════════════════════════════════════════════════════════ */
 function Blog({ t, lang }) {
     return (
-        <section id="blog" className="border-y border-[var(--line-soft)] bg-[var(--bg2)] py-24">
+        <section id="blog" className={`${SCREEN} border-y border-[var(--line-soft)] bg-[var(--bg2)]`}>
             <Container>
                 <SectionHeading num="04" kicker={t.blog.kicker} title={t.blog.title} subtitle={t.blog.subtitle} />
                 <div className="grid gap-8 md:grid-cols-2">
@@ -1643,10 +1612,14 @@ function ArticleView({ slug, t, lang }) {
                     <time dateTime={article.date}>{formatDate(article.date, t.dateLocale)}</time>
                     <span aria-hidden="true">·</span>
                     <span>{t.blog.minutes(readingMinutes(c.blocks))}</span>
-                    <span aria-hidden="true">·</span>
-                    <a href={article.repo} target="_blank" rel="noopener noreferrer" className="t-lilac underline decoration-dotted underline-offset-4 hover:text-[var(--pink)]">
-                        {t.blog.source} ↗
-                    </a>
+                    {article.repo && (
+                        <>
+                            <span aria-hidden="true">·</span>
+                            <a href={article.repo} target="_blank" rel="noopener noreferrer" className="t-lilac underline decoration-dotted underline-offset-4 hover:text-[var(--pink)]">
+                                {t.blog.source} ↗
+                            </a>
+                        </>
+                    )}
                 </p>
             </header>
 
@@ -1691,61 +1664,33 @@ function ArticleView({ slug, t, lang }) {
 function Contact({ t }) {
     const c = t.contact
     return (
-        <section id="contact" className="relative overflow-hidden py-24">
-            <div aria-hidden="true" className="pointer-events-none absolute -right-6 top-14 select-none text-right max-lg:hidden">
-                {[0, 1].map((i) => (
-                    <p key={i} className="display outline-word text-[7.5rem] leading-[0.85]" style={{ opacity: 1 - i * 0.45 }}>
-                        {c.echo}
-                    </p>
-                ))}
-            </div>
-            <Container className="relative">
+        <section id="contact" className={SCREEN}>
+            <Container>
                 <SectionHeading num="05" kicker={c.kicker} title={c.title} subtitle={c.subtitle} />
-                <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-                    <div className="win ticks">
-                        <WinBar title="carla@manjaro: ~" />
-                        <div className="mono space-y-1 p-6 text-[0.86rem] leading-relaxed">
-                            <p>
-                                <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="t-ink">whoami</span>
-                            </p>
-                            <p className="t-ink2">{c.whoami}</p>
-                            <p className="pt-3">
-                                <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="t-ink">cat location.txt</span>
-                            </p>
-                            <p className="t-ink2">{c.location}</p>
-                            <p className="pt-3">
-                                <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="t-ink">ls ~/links</span>
-                            </p>
-                            {CONTACT_LINKS.map((l) => (
-                                <p key={l.id}>
-                                    <a href={l.href} target={l.id === 'email' ? undefined : '_blank'} rel="noopener noreferrer" className="t-lilac underline decoration-dotted underline-offset-4 hover:text-[var(--pink)]">
-                                        {l.text}
-                                    </a>
-                                </p>
-                            ))}
-                            <p className="pt-3">
-                                <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="caret" aria-hidden="true" />
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col gap-4">
-                        {CONTACT_LINKS.map((l, i) => (
-                            <a
-                                key={l.id}
-                                href={l.href}
-                                target={l.id === 'email' ? undefined : '_blank'}
-                                rel="noopener noreferrer"
-                                className={`btn justify-between ${i === 0 ? 'btn-primary' : ''}`}
-                            >
-                                <span className="flex items-center gap-3">
-                                    {ICONS[l.id]} {c.labels[l.id]}
-                                </span>
-                                <span aria-hidden="true">↗</span>
-                            </a>
+                <div className="grid items-center gap-10 lg:grid-cols-[1.4fr_0.6fr]">
+                    <ul className="flex flex-col gap-4">
+                        {CONTACT_LINKS.map((l) => (
+                            <li key={l.id}>
+                                <a href={l.href} target="_blank" rel="noopener noreferrer" className="win lift flex items-center gap-4 p-4">
+                                    <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-[var(--line)] bg-[var(--bg)] t-lilac">{ICONS[l.id]}</span>
+                                    <span className="min-w-0 flex-1">
+                                        <span className="block font-semibold t-ink">{c.links[l.id][0]}</span>
+                                        <span className="block text-[0.88rem] t-ink3">{c.links[l.id][1]}</span>
+                                    </span>
+                                    <span className="mono hidden text-[0.78rem] t-lilac sm:inline">{l.text}</span>
+                                    <span aria-hidden="true" className="t-pink">↗</span>
+                                </a>
+                            </li>
                         ))}
-                        {CONTACT_LINKS.length < 3 && <p className="mt-2 text-[0.92rem] leading-relaxed t-ink3">{c.pending}</p>}
-                    </div>
+                    </ul>
+
+                    <figure className="manjaro mx-auto flex w-full max-w-[260px] flex-col items-center px-6 pb-5 pt-6">
+                        <Sprite name="manjaro" className="h-[154px] w-[154px]" />
+                        <figcaption className="mt-4 text-center">
+                            <span className="pixel block text-[0.74rem] text-[#35bf5c]">{c.manjaro[0]}</span>
+                            <span className="mono mt-1 block text-[0.74rem] text-[#7fcfae]">{c.manjaro[1]}</span>
+                        </figcaption>
+                    </figure>
                 </div>
             </Container>
         </section>
@@ -1794,29 +1739,24 @@ function Footer({ t }) {
 
     return (
         <footer className="relative">
-            <div className="crisp relative h-[288px] bg-[var(--bg)] bg-[length:auto_288px] bg-bottom bg-repeat-x" style={{ backgroundImage: `url(${nightScene})` }}>
-                <p className="pixel absolute inset-x-0 top-6 px-5 text-center text-[0.66rem] t-ink3">{t.footer.walkerHint}</p>
-                <button type="button" onClick={handleClick} onKeyDown={handleKey} aria-label={t.footer.walkerLabel} className="absolute inset-x-0 bottom-0 h-[120px] w-full cursor-pointer">
-                    <span className="absolute bottom-[18px] transition-[left] duration-500 ease-in-out" style={{ left: `${pos}%`, transform: 'translateX(-50%)' }}>
+            <div className="crisp relative h-[192px] bg-[var(--bg)] bg-[length:auto_192px] bg-bottom bg-repeat-x" style={{ backgroundImage: `url(${nightScene})` }}>
+                <p className="pixel absolute inset-x-0 top-4 px-5 text-center text-[0.64rem] t-ink3">{t.footer.walkerHint}</p>
+                <button type="button" onClick={handleClick} onKeyDown={handleKey} aria-label={t.footer.walkerLabel} className="absolute inset-x-0 bottom-0 h-[90px] w-full cursor-pointer">
+                    <span className="absolute bottom-[12px] transition-[left] duration-500 ease-in-out" style={{ left: `${pos}%`, transform: 'translateX(-50%)' }}>
                         <span className={`block ${walking ? 'walker-walking' : 'walker-idle'}`}>
                             <span className="block" style={{ transform: facing === 'left' ? 'scaleX(-1)' : undefined }}>
-                                <Sprite name="ghost" className="h-[33px] w-[36px]" />
+                                <Sprite name="ghost" className="h-[22px] w-[24px]" />
                             </span>
                         </span>
                     </span>
                 </button>
             </div>
-            <div className="border-t border-[var(--line-soft)] bg-[var(--bg)]">
-                <Container className="flex flex-col gap-4 py-8 text-[0.86rem] t-ink3 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <p>{t.footer.built}</p>
-                        <p className="mono mt-1 text-[0.76rem]">© {new Date().getFullYear()} Carla Prado</p>
-                    </div>
-                    <a href="#top" className="arrow-link">
-                        {t.footer.top} <span aria-hidden="true">↑</span>
-                    </a>
-                </Container>
-            </div>
+            <Container className="flex items-center justify-between gap-4 py-5">
+                <p className="mono text-[0.76rem] t-ink3">© {new Date().getFullYear()} Carla Prado</p>
+                <a href="#top" className="arrow-link">
+                    {t.footer.top} <span aria-hidden="true">↑</span>
+                </a>
+            </Container>
         </footer>
     )
 }
