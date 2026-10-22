@@ -107,9 +107,6 @@ section[id] { scroll-margin-top: 0; }
 .proj-tab.is-active .mark { opacity: 1; }
 .fade-in { animation: rise .35s ease-out both; }
 
-/* Tarjeta Manjaro: verde y teal sobre fondo oscuro */
-.manjaro { position: relative; background: #0d1813; border: 1px solid #1f4a35; box-shadow: 4px 4px 0 #1abc9c33; }
-
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .rise { animation: rise .6s ease-out both; }
 .d1 { animation-delay: .08s; } .d2 { animation-delay: .16s; } .d3 { animation-delay: .24s; } .d4 { animation-delay: .32s; }
@@ -130,7 +127,6 @@ section[id] { scroll-margin-top: 0; }
 const PALETTE = {
     k: '#100e17', w: '#efe9fb', l: '#c4b0f5', p: '#ee7fb5',
     m: '#8c3c65', d: '#3d2a5c', b: '#2f3761',
-    g: '#35bf5c', t: '#1abc9c', n: '#0f1f18',
 }
 
 const SPRITES = {
@@ -212,30 +208,6 @@ const SPRITES = {
         '..kmpmpmpmpk..',
         '..kmpmpmpmpk..',
         '...kkkkkkkk...',
-    ],
-    manjaro: [
-        'kkkkkkkkkkkkkkkkkkkkkk',
-        'kddddddddddddddddddddk',
-        'kdkkkkkkkkkkkkkkkkkkdk',
-        'kdknnnnnnnnnnnnnnnnkdk',
-        'kdknnngggggg.gggnnnkdk',
-        'kdknnngggggg.gggnnnkdk',
-        'kdknnnggg....gggnnnkdk',
-        'kdknnnggg.tt.gggnnnkdk',
-        'kdknnnggg.tt.gggnnnkdk',
-        'kdknnnggg.tt.gggnnnkdk',
-        'kdknnnggg.tt.gggnnnkdk',
-        'kdknnnggg.tt.gggnnnkdk',
-        'kdknnnnnnnnnnnnnnnnkdk',
-        'kdknntnnnnnnnnnnnnnkdk',
-        'kdknnntnttttnnnnnnnkdk',
-        'kdknntnnnnnnnnnnnnnkdk',
-        'kdknnnnnnnnnnnnnnnnkdk',
-        'kdkkkkkkkkkkkkkkkkkkdk',
-        'kddddddddddddddddgtddk',
-        'kkkkkkkkkkkkkkkkkkkkkk',
-        '........kddddk........',
-        '.....kkkkkkkkkkkk.....',
     ],
     frame: [
         'kkkkkkkkkkkk',
@@ -879,7 +851,6 @@ const CONTENT = {
                 linkedin: ['LinkedIn', 'Experience and education'],
                 art: ['Artwork', 'Hand-drawn illustration on Instagram'],
             },
-            manjaro: ['Manjaro Linux', 'My everyday system · bash'],
         },
         footer: {
             walkerHint: 'Click the path to move the ghost.',
@@ -983,7 +954,6 @@ const CONTENT = {
                 linkedin: ['LinkedIn', 'Experiencia y formación'],
                 art: ['Ilustración', 'Dibujo a mano, en Instagram'],
             },
-            manjaro: ['Manjaro Linux', 'Mi sistema de uso diario · bash'],
         },
         footer: {
             walkerHint: 'Haz clic en el camino para mover al fantasma.',
@@ -1672,7 +1642,7 @@ function Contact({ t }) {
         <section id="contact" className={SCREEN}>
             <Container>
                 <SectionHeading num="05" kicker={c.kicker} title={c.title} subtitle={c.subtitle} />
-                <div className="grid items-center gap-10 lg:grid-cols-[1.4fr_0.6fr]">
+                <div className="max-w-3xl">
                     <div>
                         <div className="win ticks">
                             <WinBar title="carla@manjaro: ~" />
@@ -1716,14 +1686,6 @@ function Contact({ t }) {
                             ))}
                         </ul>
                     </div>
-
-                    <figure className="manjaro mx-auto flex w-full max-w-[260px] flex-col items-center px-6 pb-5 pt-6">
-                        <Sprite name="manjaro" className="h-[154px] w-[154px]" />
-                        <figcaption className="mt-4 text-center">
-                            <span className="pixel block text-[0.74rem] text-[#35bf5c]">{c.manjaro[0]}</span>
-                            <span className="mono mt-1 block text-[0.74rem] text-[#7fcfae]">{c.manjaro[1]}</span>
-                        </figcaption>
-                    </figure>
                 </div>
             </Container>
         </section>
