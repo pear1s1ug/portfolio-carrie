@@ -363,6 +363,90 @@ const GENERAL_META = [
    ═══════════════════════════════════════════════════════════ */
 const PROJECTS = [
     {
+        id: 'last-mile-dashboard',
+        sprite: 'browser',
+        name: 'Last-mile Dashboard',
+        slug: 'rocktruck/last-mile-dashboard',
+        tech: ['Node.js', 'React'],
+        links: [],
+        en: {
+            context: 'Professional project · RockTruck · 2026',
+            description: 'Order-tracking dashboard for the last-mile deliveries of a multinational food and beverage company.',
+            purpose: 'Give day-to-day visibility of delivery status and of why orders get rejected.',
+            highlights: [
+                'Charts of the most frequent rejection reasons.',
+                'Excel export and PDF reports.',
+                'Admin panel for users and modules, with three-level drag and drop.',
+            ],
+        },
+        es: {
+            context: 'Proyecto profesional · RockTruck · 2026',
+            description: 'Dashboard de seguimiento de pedidos de última milla para una multinacional de alimentos y bebidas.',
+            purpose: 'Dar visibilidad diaria del estado de las entregas y de por qué se rechazan pedidos.',
+            highlights: [
+                'Gráficos de los motivos de rechazo más frecuentes.',
+                'Exportación a Excel y reportes en PDF.',
+                'Panel de administración de usuarios y módulos, con drag and drop en tres niveles.',
+            ],
+        },
+    },
+    {
+        id: 'reverse-logistics',
+        sprite: 'envelope',
+        name: 'Reverse Logistics',
+        slug: 'rocktruck/reverse-logistics',
+        tech: ['Node.js', 'React', 'QR', 'TMS'],
+        links: [],
+        en: {
+            context: 'Professional project · RockTruck · 2026',
+            description: 'Reverse-logistics platform to receive, review and return goods, built on data that arrives from the TMS.',
+            purpose: 'Bring order to how returns are received and keep every box traceable back to the distribution centre.',
+            highlights: [
+                'Licence plate → invoice → boxes → items hierarchy, with each one marked approved, rejected or partial.',
+                'Pallets created with their own QR code, and returns of several pallets to the distribution centre in big-ticket trucks.',
+                'A module for a home-improvement retailer that receives goods by scanning QR codes, far less manual than entry by licence plate.',
+            ],
+        },
+        es: {
+            context: 'Proyecto profesional · RockTruck · 2026',
+            description: 'Plataforma de logística inversa para recepcionar, revisar y devolver mercadería, a partir de los datos que llegan desde el TMS.',
+            purpose: 'Ordenar la recepción de devoluciones y dejar trazabilidad de cada caja hasta el centro de distribución.',
+            highlights: [
+                'Jerarquía patente → factura → cajas → ítems, donde cada uno se marca como aprobado, rechazado o parcial.',
+                'Creación de pallets con su código QR y devoluciones de varios pallets al centro de distribución en camiones big ticket.',
+                'Módulo para una cadena de mejoramiento del hogar que recepciona escaneando códigos QR, mucho menos manual que el ingreso por patente.',
+            ],
+        },
+    },
+    {
+        id: 'claims-platform',
+        sprite: 'calendar',
+        name: 'Claims Platform',
+        slug: 'rocktruck/claims-platform',
+        tech: ['Microsoft Entra ID', 'TMS'],
+        links: [],
+        en: {
+            context: 'Professional project · RockTruck · 2026',
+            description: 'Customer-service platform for managing claims from supermarket chains that use the company\'s last-mile service.',
+            purpose: 'Make sure every claim has an owner, evidence and follow-up, and spot patterns by driver.',
+            highlights: [
+                'Dashboard with claims by driver, plus daily, weekly, fortnightly and monthly reports.',
+                'Board or table view for handling claims, with images from the TMS attached by hand.',
+                'Sign-in with Microsoft Entra ID and data ingested from email.',
+            ],
+        },
+        es: {
+            context: 'Proyecto profesional · RockTruck · 2026',
+            description: 'Plataforma SAC para gestionar los reclamos de cadenas de supermercados que usan el servicio de última milla.',
+            purpose: 'Que cada reclamo tenga responsable, evidencia y seguimiento, y poder ver patrones por conductor.',
+            highlights: [
+                'Dashboard con reclamos por conductor y reportes diarios, semanales, quincenales y mensuales.',
+                'Vista de tablero o de tabla para gestionar reclamos, adjuntando imágenes del TMS manualmente.',
+                'Login con Microsoft Entra ID e ingesta de datos desde el correo electrónico.',
+            ],
+        },
+    },
+    {
         id: 'nexus-gaming',
         sprite: 'envelope',
         name: 'Nexus Gaming',
@@ -827,6 +911,7 @@ const CONTENT = {
             why: 'Why',
             highlights: 'Highlights',
             links: { repo: 'Repository', demo: 'Live demo', front: 'Frontend repo', back: 'Backend repo' },
+            private: 'Company project: the code is private.',
             more: 'More on GitHub',
         },
         blog: {
@@ -926,6 +1011,7 @@ const CONTENT = {
             why: 'Para qué',
             highlights: 'Lo destacado',
             links: { repo: 'Repositorio', demo: 'Demo en vivo', front: 'Repo frontend', back: 'Repo backend' },
+            private: 'Proyecto de empresa: el código es privado.',
             more: 'Más en GitHub',
         },
         blog: {
@@ -1471,11 +1557,15 @@ function Projects({ t, lang }) {
                             </div>
 
                             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-3 border-t border-[var(--line-soft)] pt-4">
-                                {project.links.map((l) => (
-                                    <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="arrow-link">
-                                        {t.projects.links[l.kind]} <span aria-hidden="true">↗</span>
-                                    </a>
-                                ))}
+                                {project.links.length ? (
+                                    project.links.map((l) => (
+                                        <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="arrow-link">
+                                            {t.projects.links[l.kind]} <span aria-hidden="true">↗</span>
+                                        </a>
+                                    ))
+                                ) : (
+                                    <p className="text-[0.82rem] t-ink3">{t.projects.private}</p>
+                                )}
                             </div>
                         </div>
                     </article>
