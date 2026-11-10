@@ -423,7 +423,7 @@ const PROJECTS = [
         sprite: 'calendar',
         name: 'Claims Platform',
         slug: 'rocktruck/claims-platform',
-        tech: ['Microsoft Entra ID', 'TMS'],
+        tech: ['Node.js', 'React', 'Microsoft Entra ID', 'TMS'],
         links: [],
         en: {
             context: 'Professional project · RockTruck · 2026',
