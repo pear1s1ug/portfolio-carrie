@@ -7,7 +7,6 @@ import nightScene from '../assets/pixel/night-scene.png'
    ═══════════════════════════════════════════════════════════ */
 const GITHUB_URL = 'https://github.com/pear1s1ug'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/carla-prado-a37baa345/'
-const ART_URL = 'https://www.instagram.com/mauve.aphelion'
 
 /* ═══════════════════════════════════════════════════════════
    Estilos del sistema visual (paleta, ventanas, pixel art)
@@ -78,10 +77,6 @@ section[id] { scroll-margin-top: 0; }
 
 /* Caja de diálogo estilo RPG */
 .dlg { border: 2px solid var(--ink); background: rgba(16,14,23,.94); box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4px var(--line); }
-.choice { font-family: var(--pixel); font-size: .78rem; text-transform: uppercase; color: var(--ink); }
-.choice::before { content: '▶'; display: inline-block; width: 1.1em; color: var(--pink); opacity: 0; transition: opacity .12s; }
-.choice:hover::before, .choice:focus-visible::before { opacity: 1; }
-.choice:hover { color: var(--pink); }
 .caret { display: inline-block; width: .55em; height: 1em; margin-left: 2px; background: var(--pink); vertical-align: -0.15em; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
@@ -287,7 +282,8 @@ function StarField() {
 const STACK_META = [
     { id: 'frontend', dot: 'bg-[#7cc4ff]', items: ['HTML', 'CSS', 'React.js', 'Tailwind CSS', 'Bootstrap Framework', 'Java Swing'] },
     { id: 'backend', dot: 'bg-[#e46f9f]', items: ['Java', 'Java + Springboot', 'JavaScript', 'Node.js', 'Express.js', 'VB.NET', 'Python', 'Kotlin'] },
-    { id: 'database', dot: 'bg-[#8b6fd6]', items: ['MySQL', 'MariaDB', 'PL/SQL', 'SQLite', 'MongoDB'] },
+    { id: 'database', dot: 'bg-[#8b6fd6]', items: ['MySQL', 'PostgreSQL', 'MariaDB', 'PL/SQL', 'SQLite', 'MongoDB'] },
+    { id: 'cloud', dot: 'bg-[#6fd6b4]', items: ['Azure', 'AWS', 'GCP', 'Vercel', 'Railway'] },
 ]
 
 const GENERAL_META = [
@@ -300,9 +296,10 @@ const GENERAL_META = [
         )
     },
     {
-        id: 'cloud', icon: (
+        id: 'cicd', icon: (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M7 18h10a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 7.1 9.06 4 4 0 0 0 7 18z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+                <path d="M20 12a8 8 0 0 1-14.3 4.9M4 12a8 8 0 0 1 14.3-4.9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                <path d="M18.5 3v4h-4M5.5 21v-4h4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
         )
     },
@@ -430,7 +427,6 @@ const PROJECTS = [
         slug: 'TallerAplicadoProgramacionFrontend',
         tech: ['React 19', 'React Router 7', 'Tailwind CSS', 'Vite'],
         links: [
-            { kind: 'demo', href: 'https://taller-aplicado-programacion-fronte.vercel.app' },
             { kind: 'repo', href: `${GITHUB_URL}/TallerAplicadoProgramacionFrontend` },
         ],
         en: {
@@ -593,10 +589,10 @@ const ARTICLES = [
             summary: 'I use AI every day at work and never when I draw. Some thoughts on why, on what artists are right to worry about, and on whether handmade work might come to mean more, not less.',
             blocks: [
                 ['p', 'I use AI a lot. At work and in my studies it’s part of how I write code, look things up, make sense of an unfamiliar library or get unstuck on a problem. I don’t feel conflicted about that: in a professional context it’s a tool, and a genuinely useful one.'],
-                ['p', 'When I draw, though, I don’t use it at all. It isn’t a rule I set out to follow — it’s more that the two activities are for different things. I’ve been trying to put into words why that line feels so natural to me, and what it might say about where art is heading.'],
+                ['p', 'When I draw, though, I don’t use it at all. It isn’t a rule I set out to follow; it’s more that the two activities are for different things. I’ve been trying to put into words why that line feels so natural to me, and what it might say about where art is heading.'],
                 ['h', 'Two different kinds of work'],
                 ['p', 'In software, the result is what matters most. If a tool helps me reach working, readable code sooner, the time I save goes into the parts that need more thought. Nobody using an application cares whether a function was typed by hand.'],
-                ['p', 'Drawing doesn’t work that way for me. The point isn’t only to end up with an image; it’s the time spent making it — the decisions, the corrections, the lines I’d draw differently next time. If something else did that part, I’d have an image, but I wouldn’t have drawn anything. The process is the reason I do it.'],
+                ['p', 'Drawing doesn’t work that way for me. The point isn’t only to end up with an image; it’s the time spent making it: the decisions, the corrections, the lines I’d draw differently next time. If something else did that part, I’d have an image, but I wouldn’t have drawn anything. The process is the reason I do it.'],
                 ['p', 'So the distinction isn’t that AI is good in one place and bad in another. It’s that the same tool means something different depending on why you’re doing the work in the first place.'],
                 ['h', 'The concerns are real'],
                 ['p', 'It would be easy to stop there and call it a personal preference, but the bigger conversation isn’t about hobbies. AI-generated images are already being used commercially, and I have mixed feelings about that.'],
@@ -604,14 +600,14 @@ const ARTICLES = [
                 ['p', 'Working in technology doesn’t make me neutral here. If anything, it makes me more aware that tools aren’t built in a vacuum, and that who benefits from them is a choice, not a law of nature.'],
                 ['h', 'Another technological shift'],
                 ['p', 'At the same time, it’s hard not to see this as one more of the big shifts that keep reshaping how things get made. Each of them changed what was cheap and what was rare.'],
-                ['p', 'That’s the part I find interesting. When something becomes abundant, what stays scarce tends to become more noticeable. If generated images end up everywhere — in ads, feeds and stock libraries — then work that clearly came from a person, with their time and their hand in it, might start to stand out more rather than less.'],
+                ['p', 'That’s the part I find interesting. When something becomes abundant, what stays scarce tends to become more noticeable. If generated images end up everywhere (in ads, feeds and stock libraries), then work that clearly came from a person, with their time and their hand in it, might start to stand out more rather than less.'],
                 ['h', 'What a person brings to a piece'],
                 ['p', 'If that happens, the value probably won’t be in competing with AI on its own terms: speed, volume, polish. That’s a race a person isn’t built to win, and I don’t think artists should have to run it. What a person can offer is different:'],
                 ['ul', [
                     '**Visible decisions.** Why this composition, this colour, this thing left out. Choices carry a point of view.',
                     '**Imperfection.** A wobbly line or an uneven texture is evidence that someone was there.',
                     '**Experience.** People draw from what they’ve lived, noticed and cared about, and it shows.',
-                    '**Time.** Knowing that something took hours — or years of practice — changes how we look at it.',
+                    '**Time.** Knowing that something took hours, or years of practice, changes how we look at it.',
                 ]],
                 ['p', 'Some artists already lean into this by sharing sketches, process videos and work in progress. Showing how something was made becomes part of the work, and it’s exactly the part that can’t be generated.'],
                 ['h', 'What I’m not sure about'],
@@ -665,7 +661,7 @@ const ARTICLES = [
             summary: 'How NexusMatch turns enrollment into an optimisation problem with PuLP: binary decisions, capacity and minimum-enrollment rules, and a trick that keeps every student above a satisfaction threshold.',
             blocks: [
                 ['p', 'Assigning students to sections looks like a sorting problem until you add the real rules: each section has a maximum capacity, a section with too few students shouldn’t open at all, and nobody should end up with a timetable they can’t live with. Greedy approaches such as first come, first served satisfy the early students and leave everyone else with whatever is left.'],
-                ['p', 'NexusMatch is a FastAPI service I built that splits the problem into three phases. Phase 1 generates the possible sections from teacher availability and rooms. Phase 2 scores how well each section suits each student and groups students who want to study together using Louvain community detection. Phase 3 — the subject of this article — makes the final assignment with an **integer linear programming** (ILP) model, written with PuLP and solved by CBC.'],
+                ['p', 'NexusMatch is a FastAPI service I built that splits the problem into three phases. Phase 1 generates the possible sections from teacher availability and rooms. Phase 2 scores how well each section suits each student and groups students who want to study together using Louvain community detection. Phase 3, the subject of this article, makes the final assignment with an **integer linear programming** (ILP) model, written with PuLP and solved by CBC.'],
                 ['h', 'The inputs'],
                 ['p', 'By the time phase 3 runs, the work of judging preferences is done. It receives the students, the candidate sections with their minimum and maximum enrollment, a score between 0 and 1 for every (student, section) pair, and a threshold `theta`: the lowest score any student should get in any subject. The first step is to index that data so the model can be built quickly:'],
                 ['code', 'python', CODE.index],
@@ -673,32 +669,32 @@ const ARTICLES = [
                 ['p', 'An ILP model is described by its decisions. This one has two families of binary variables: `c[a, s]` is 1 when student `a` is assigned to section `s`, and `y[s]` is 1 when section `s` opens at all.'],
                 ['code', 'python', CODE.variables],
                 ['h', 'The objective: maximise total satisfaction'],
-                ['p', 'Each assignment contributes its score, so the solver favours assignments that students like — across the whole group at once, not one student at a time.'],
+                ['p', 'Each assignment contributes its score, so the solver favours assignments that students like, across the whole group at once rather than one student at a time.'],
                 ['code', 'python', CODE.objective],
                 ['h', 'Four rules as four constraints'],
-                ['p', '**R1 — one section per subject.** Within each subject, exactly one of a student’s `c` variables can be 1.'],
+                ['p', '**R1: one section per subject.** Within each subject, exactly one of a student’s `c` variables can be 1.'],
                 ['code', 'python', CODE.r1],
-                ['p', '**R2 — capacity.** The number of students in a section can’t exceed its maximum.'],
+                ['p', '**R2: capacity.** The number of students in a section can’t exceed its maximum.'],
                 ['code', 'python', CODE.r2],
-                ['p', '**R3 — minimum enrollment, linked to opening.** If a section opens (`y = 1`) it needs at least `cupoMinimo` students; if it doesn’t (`y = 0`), nobody can be assigned to it. The inequality `c[a, s] <= y[s]` is the standard way to tie an assignment to an on/off decision.'],
+                ['p', '**R3: minimum enrollment, linked to opening.** If a section opens (`y = 1`) it needs at least `cupoMinimo` students; if it doesn’t (`y = 0`), nobody can be assigned to it. The inequality `c[a, s] <= y[s]` is the standard way to tie an assignment to an on/off decision.'],
                 ['code', 'python', CODE.r3],
-                ['p', '**R4 — the satisfaction floor.** The rule in plain words is “the section each student gets in a subject has a score of at least θ”. Because exactly one `c` per subject equals 1 (R1), that score is simply `sum(score × c)` over the subject’s sections. Writing the right-hand side as `theta × sum(c)` — which is just `theta`, since the sum is 1 — keeps every term linear, which is what the solver needs.'],
+                ['p', '**R4: the satisfaction floor.** The rule in plain words is “the section each student gets in a subject has a score of at least θ”. Because exactly one `c` per subject equals 1 (R1), that score is simply `sum(score × c)` over the subject’s sections. Writing the right-hand side as `theta × sum(c)` (which is just `theta`, since the sum is 1) keeps every term linear, which is what the solver needs.'],
                 ['code', 'python', CODE.r4],
                 ['h', 'Failing fast, before the solver'],
-                ['p', 'If some student has no section above θ in some subject, the model is infeasible whatever the solver does. Instead of letting CBC discover that, the endpoint checks it first and returns the affected students — a far more useful answer than a bare “Infeasible”.'],
+                ['p', 'If some student has no section above θ in some subject, the model is infeasible whatever the solver does. Instead of letting CBC discover that, the endpoint checks it first and returns the affected students, a far more useful answer than a bare “Infeasible”.'],
                 ['code', 'python', CODE.feasibility],
                 ['p', 'The solver call itself has a 60-second limit, so a large instance can’t hang the API, and any status other than `Optimal` is reported back instead of returning a partial result.'],
                 ['code', 'python', CODE.solve],
                 ['h', 'Why a model instead of a greedy algorithm'],
                 ['ul', [
-                    '**A global view.** The solver can give one student a slightly worse section if that gives several others a much better one — something a first-come rule can’t do.',
+                    '**A global view.** The solver can give one student a slightly worse section if that gives several others a much better one, something a first-come rule can’t do.',
                     '**Declarative rules.** Each institutional rule is one constraint. Adding a new rule means adding a constraint, not rewriting an algorithm.',
                     '**A guarantee.** When the status is `Optimal`, no other assignment that respects the rules has a higher total score.',
                     '**A cost to keep in mind.** Integer programming is NP-hard in general. One programme’s enrollment is a small instance, but the time limit exists because that can change.',
                 ]],
-                ['p', 'One thread is deliberately left open: phase 3 already indexes the Louvain clusters from phase 2 (“available for future use”, as the code says) but doesn’t constrain on them yet. Keeping friends together would be one more constraint — or one more term in the objective.'],
+                ['p', 'One thread is deliberately left open: phase 3 already indexes the Louvain clusters from phase 2 (“available for future use”, as the code says) but doesn’t constrain on them yet. Keeping friends together would be one more constraint, or one more term in the objective.'],
                 ['h', 'Takeaway'],
-                ['p', 'When a problem has a clear goal and a list of rules that must never be broken, write it down as a model before writing an algorithm: a binary variable for each decision, an on/off variable for anything that may or may not exist, a linear constraint for each rule — and a feasibility check up front, so the error message helps the person who has to read it.'],
+                ['p', 'When a problem has a clear goal and a list of rules that must never be broken, write it down as a model before writing an algorithm: a binary variable for each decision, an on/off variable for anything that may or may not exist, a linear constraint for each rule, and a feasibility check up front, so the error message helps the person who has to read it.'],
             ],
         },
         es: {
@@ -763,33 +759,35 @@ const CONTENT = {
         menu: 'Menu',
         langSwitch: 'Cambiar a español',
         hero: {
-            kicker: 'Software developer · Santiago, Chile',
-            lead: 'I build Java and Spring Boot backends and the React interfaces on top of them — with extra attention to the parts that tend to break: authentication, messaging and tests.',
-            meta: 'Junior developer at RockTruck · 3rd-year Software Engineering student at Duoc UC',
+            kicker: 'Full-stack developer · Santiago, Chile',
+            lead: 'I make web apps that people use in their everyday work, and dashboards that show what\'s going on in a business. My favourite part is talking with the people who\'ll use them and watching a half-formed idea turn into something that works.',
+            meta: 'Developer at RockTruck · 3rd-year Software Engineering student at Duoc UC',
             primary: 'View projects',
             portraitAlt: 'Pixel-art portrait of Carla Prado',
-            speaker: 'Carla',
-            line: 'Hi! Where would you like to start?',
+            speaker: 'Carrie',
+            line: 'Hi! Thanks for stopping by.',
             skipHint: 'Click to skip',
-            quick: 'Quick links',
-            choices: { about: 'About me', blog: 'Blog', contact: 'Contact' },
         },
         about: {
             kicker: 'Profile',
             title: 'About me',
-            intro: 'I have a background in art and graphic design, so I care about how an interface reads, not only whether it works. Most of my projects lean towards the backend — Java, Spring Boot and relational databases — and an elective in cybersecurity got me working with Wireshark and Kali Linux. Outside work and class, I draw by hand.',
-            art: 'See my artwork',
-            artNote: 'Hand-drawn illustration · Instagram',
+            intro: 'I work mostly on the backend with Java, Spring Boot, JavaScript and relational databases, and on the frontend with React. Version control, testing and continuous integration are part of my routine. A cybersecurity elective had me analysing traffic with Wireshark and practising with Kali Linux, and security has been part of how I build ever since. I come from graphic design and illustration, which shows in how I approach interfaces. And I\'d love to keep picking up new languages along the way.',
             experienceTitle: 'Experience',
             experience: [
-                { role: 'Junior Software Developer (Trainee)', org: 'RockTruck', type: 'Internship contract', period: 'Jan 2026 — Present', note: 'Building corporate software for a logistics company.' },
-                { role: 'Administrative Assistant', org: 'Preuniversitario UC', type: 'Temporary', period: '2023 — 2024' },
-                { role: 'Earlier roles', org: 'Bata (stock associate), KFC and Telepizza (kitchen assistant)', period: '2015 — 2019' },
+                { role: 'Junior Software Developer', org: 'RockTruck', type: 'Permanent contract', period: '2026 - Present', note: 'Building corporate software for a logistics company.' },
+                { role: 'Software Developer (Trainee)', org: 'RockTruck', type: 'Internship contract', period: '2026' },
+                { role: 'Administrative Assistant', org: 'Preuniversitario UC', type: 'Temporary', period: '2023 - 2024' },
+                { role: 'Earlier roles', org: 'Bata (stock associate), KFC and Telepizza (kitchen assistant)', period: '2015 - 2019' },
             ],
             educationTitle: 'Education',
             education: [
-                { degree: 'Computer Engineering, Software Development track', school: 'Duoc UC', period: '2024 — 2027 (expected)', note: '3rd year. Current courses cover cloud-native development, DevOps, and software security and quality.' },
-                { degree: 'Analista Programador (Programmer Analyst)', school: 'Duoc UC', period: '2024 — 2026', note: 'Grade average 6.5 / 7.0.' },
+                { degree: 'Computer Engineering, Software Development track', school: 'Duoc UC', period: '2024 - 2027 (expected)', note: '3rd year. Current courses cover cloud-native development, DevOps, and software security and quality.' },
+                { degree: 'Analista Programador (Programmer Analyst)', school: 'Duoc UC', period: '2024 - 2026', note: 'Grade average 6.5.' },
+            ],
+            previousTitle: 'Earlier studies',
+            previous: [
+                { degree: 'Graphic Design', school: 'Duoc UC' },
+                { degree: 'Artistic Illustration', school: 'Alpes CFT' },
             ],
             certsTitle: 'Certifications',
             certs: [
@@ -803,8 +801,8 @@ const CONTENT = {
         stackSection: {
             kicker: 'Know-how',
             title: 'Tech Stack',
-            subtitle: 'Languages, frameworks and databases I work with.',
-            categories: { frontend: 'Frontend', backend: 'Backend', database: 'Database' },
+            subtitle: 'Languages, frameworks, databases and cloud platforms I work with.',
+            categories: { frontend: 'Frontend', backend: 'Backend', database: 'Database', cloud: 'Cloud' },
         },
         generalSection: {
             kicker: 'Beyond code',
@@ -813,7 +811,7 @@ const CONTENT = {
         },
         general: [
             { title: 'Cybersecurity', text: 'Common vulnerabilities and secure-coding habits.' },
-            { title: 'Cloud', text: 'AWS and Azure for hosting and deployments.' },
+            { title: 'CI/CD', text: 'GitHub Actions pipelines that build, test and deploy on every change.' },
             { title: 'Project Management', text: 'Requirements gathering, Scrum and Kanban in Jira or Trello.' },
             { title: 'Branching Strategies', text: 'Git Flow, trunk-based development and feature branches.' },
             { title: 'Testing', text: 'Unit and integration tests to ship changes with confidence.' },
@@ -844,14 +842,8 @@ const CONTENT = {
         contact: {
             kicker: 'Contact',
             title: 'Get in touch',
-            subtitle: 'Open to junior developer roles in Gran Santiago, on-site or hybrid.',
-            whoami: 'Carla Prado — software developer',
+            subtitle: 'Contact links',
             location: 'Gran Santiago, Chile · on-site / hybrid',
-            links: {
-                github: ['GitHub', 'Code and course projects'],
-                linkedin: ['LinkedIn', 'Experience and education'],
-                art: ['Artwork', 'Hand-drawn illustration on Instagram'],
-            },
         },
         footer: {
             walkerHint: 'Click the path to move the ghost.',
@@ -866,33 +858,35 @@ const CONTENT = {
         menu: 'Menú',
         langSwitch: 'Switch to English',
         hero: {
-            kicker: 'Desarrolladora de software · Santiago, Chile',
-            lead: 'Construyo backends con Java y Spring Boot y las interfaces en React que los usan, con especial atención a lo que suele fallar: autenticación, mensajería y pruebas.',
-            meta: 'Desarrolladora junior en RockTruck · 3.er año de Ingeniería en Informática en Duoc UC',
+            kicker: 'Desarrolladora full-stack · Santiago, Chile',
+            lead: 'Hago aplicaciones web que la gente usa en su trabajo diario, y dashboards para ver qué está pasando en una empresa. Lo que más me gusta es conversar con quienes las van a usar y ver cómo una idea medio vaga se va convirtiendo en algo que funciona.',
+            meta: 'Desarrolladora en RockTruck · 3.er año de Ingeniería en Informática en Duoc UC',
             primary: 'Ver proyectos',
             portraitAlt: 'Retrato en pixel art de Carla Prado',
-            speaker: 'Carla',
-            line: '¡Hola! ¿Por dónde quieres empezar?',
+            speaker: 'Carrie',
+            line: '¡Hola! Gracias por pasar.',
             skipHint: 'Haz clic para saltar',
-            quick: 'Accesos rápidos',
-            choices: { about: 'Sobre mí', blog: 'Blog', contact: 'Contacto' },
         },
         about: {
             kicker: 'Perfil',
             title: 'Sobre mí',
-            intro: 'Tengo formación en arte y diseño gráfico, así que me importa cómo se lee una interfaz, no solo que funcione. La mayoría de mis proyectos se inclinan hacia el backend (Java, Spring Boot y bases de datos relacionales), y un electivo de ciberseguridad me llevó a trabajar con Wireshark y Kali Linux. Fuera del trabajo y la universidad, dibujo a mano.',
-            art: 'Ver mis ilustraciones',
-            artNote: 'Ilustración hecha a mano · Instagram',
+            intro: 'Trabajo principalmente en backend con Java, Spring Boot, JavaScript y bases de datos relacionales, y en frontend con React. El control de versiones, las pruebas y la integración continua son parte de mi rutina. Un electivo de ciberseguridad me llevó a analizar tráfico con Wireshark y a practicar con Kali Linux, y desde entonces la seguridad es parte de cómo construyo. Vengo del diseño gráfico y la ilustración, algo que se nota en cómo abordo las interfaces. Y me encantaría seguir aprendiendo muchos lenguajes más.',
             experienceTitle: 'Experiencia',
             experience: [
-                { role: 'Desarrolladora de Software Junior (Trainee)', org: 'RockTruck', type: 'Contrato de práctica', period: 'ene. 2026 — Actualidad', note: 'Creando software corporativo para una empresa de logística.' },
-                { role: 'Auxiliar administrativa', org: 'Preuniversitario UC', type: 'Temporal', period: '2023 — 2024' },
-                { role: 'Trabajos anteriores', org: 'Bata (reponedora), KFC y Telepizza (ayudante de cocina)', period: '2015 — 2019' },
+                { role: 'Desarrolladora de Software Junior', org: 'RockTruck', type: 'Contrato indefinido', period: '2026 - Actualidad', note: 'Creando software corporativo para una empresa de logística.' },
+                { role: 'Desarrolladora de Software (Trainee)', org: 'RockTruck', type: 'Contrato de práctica', period: '2026' },
+                { role: 'Auxiliar administrativa', org: 'Preuniversitario UC', type: 'Temporal', period: '2023 - 2024' },
+                { role: 'Trabajos anteriores', org: 'Bata (reponedora), KFC y Telepizza (ayudante de cocina)', period: '2015 - 2019' },
             ],
             educationTitle: 'Educación',
             education: [
-                { degree: 'Ingeniería en Informática, mención Desarrollo de Software', school: 'Duoc UC', period: '2024 — 2027 (en curso)', note: '3.er año. Los ramos actuales abordan desarrollo cloud native, DevOps, y seguridad y calidad del software.' },
-                { degree: 'Analista Programador', school: 'Duoc UC', period: '2024 — 2026', note: 'Promedio de notas 6,5 / 7,0.' },
+                { degree: 'Ingeniería en Informática, mención Desarrollo de Software', school: 'Duoc UC', period: '2024 - 2027 (en curso)', note: '3.er año. Los ramos actuales abordan desarrollo cloud native, DevOps, y seguridad y calidad del software.' },
+                { degree: 'Analista Programador', school: 'Duoc UC', period: '2024 - 2026', note: 'Promedio de notas 6,5.' },
+            ],
+            previousTitle: 'Formación anterior',
+            previous: [
+                { degree: 'Diseño Gráfico', school: 'Duoc UC' },
+                { degree: 'Ilustración Artística', school: 'Alpes CFT' },
             ],
             certsTitle: 'Certificaciones',
             certs: [
@@ -906,8 +900,8 @@ const CONTENT = {
         stackSection: {
             kicker: 'Know-how',
             title: 'Stack Tecnológico',
-            subtitle: 'Lenguajes, frameworks y bases de datos con los que trabajo.',
-            categories: { frontend: 'Frontend', backend: 'Backend', database: 'Base de Datos' },
+            subtitle: 'Lenguajes, frameworks, bases de datos y plataformas cloud con los que trabajo.',
+            categories: { frontend: 'Frontend', backend: 'Backend', database: 'Base de Datos', cloud: 'Cloud' },
         },
         generalSection: {
             kicker: 'Más allá del código',
@@ -916,7 +910,7 @@ const CONTENT = {
         },
         general: [
             { title: 'Ciberseguridad', text: 'Vulnerabilidades comunes y hábitos de código seguro.' },
-            { title: 'Nube', text: 'AWS y Azure para hosting y despliegues.' },
+            { title: 'CI/CD', text: 'Pipelines en GitHub Actions que compilan, prueban y despliegan en cada cambio.' },
             { title: 'Gestión de Proyectos', text: 'Levantamiento de requisitos, Scrum y Kanban en Jira o Trello.' },
             { title: 'Branching Strategies', text: 'Git Flow, trunk-based development y feature branches.' },
             { title: 'Testing', text: 'Pruebas unitarias y de integración para publicar cambios con confianza.' },
@@ -947,14 +941,8 @@ const CONTENT = {
         contact: {
             kicker: 'Contacto',
             title: 'Conversemos',
-            subtitle: 'Abierta a roles de desarrolladora junior en Gran Santiago, presencial o híbrido.',
-            whoami: 'Carla Prado — desarrolladora de software',
+            subtitle: 'Links de contacto',
             location: 'Gran Santiago, Chile · presencial / híbrido',
-            links: {
-                github: ['GitHub', 'Código y proyectos de la carrera'],
-                linkedin: ['LinkedIn', 'Experiencia y formación'],
-                art: ['Ilustración', 'Dibujo a mano, en Instagram'],
-            },
         },
         footer: {
             walkerHint: 'Haz clic en el camino para mover al fantasma.',
@@ -965,7 +953,8 @@ const CONTENT = {
     },
 }
 
-const SECTION_IDS = ['about', 'skills', 'projects', 'blog', 'contact']
+/* Blog oculto por ahora: para volver a mostrarlo, agrega 'blog' antes de 'contact' */
+const SECTION_IDS = ['about', 'skills', 'projects', /* 'blog', */ 'contact']
 
 /* ═══════════════════════════════════════════════════════════
    Hooks
@@ -1060,15 +1049,15 @@ function WinBar({ title }) {
     )
 }
 
-function SectionHeading({ num, kicker, title, subtitle }) {
+function SectionHeading({ num, kicker, title, subtitle, center = false }) {
     return (
-        <header className="mb-9 max-w-3xl">
-            <p className="kicker flex items-center gap-2.5">
+        <header className={`mb-9 max-w-3xl ${center ? 'mx-auto text-center' : ''}`}>
+            <p className={`kicker flex items-center gap-2.5 ${center ? 'justify-center' : ''}`}>
                 <Sprite name="spark" className="h-3.5 w-3.5" />
                 {num} // {kicker}
             </p>
             <h2 className="display mt-3 text-[clamp(1.9rem,4.2vw,3rem)]">{title}</h2>
-            {subtitle && <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed t-ink2">{subtitle}</p>}
+            {subtitle && <p className={`mt-3 max-w-2xl text-[0.95rem] leading-relaxed t-ink2 ${center ? 'mx-auto' : ''}`}>{subtitle}</p>}
         </header>
     )
 }
@@ -1084,13 +1073,11 @@ const ICONS = {
             <path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM3.5 8.75h3.9V21H3.5zM10 8.75h3.74v1.68h.05c.52-.94 1.8-1.93 3.7-1.93 3.96 0 4.69 2.5 4.69 5.76V21h-3.9v-6.13c0-1.46-.03-3.34-2.1-3.34-2.1 0-2.42 1.58-2.42 3.23V21H10z" />
         </svg>
     ),
-    art: <Sprite name="frame" className="h-5 w-6" />,
 }
 
 const CONTACT_LINKS = [
     { id: 'github', href: GITHUB_URL, text: 'github.com/pear1s1ug' },
     { id: 'linkedin', href: LINKEDIN_URL, text: 'in/carla-prado' },
-    { id: 'art', href: ART_URL, text: '@mauve.aphelion' },
 ]
 
 /* Texto con `código` y **negrita** */
@@ -1263,7 +1250,7 @@ function Hero({ t, lang }) {
 
                 <div className="rise d4 relative mx-auto w-full max-w-[360px] lg:mr-0">
                     <div className="win ticks">
-                        <WinBar title="carla.png" />
+                        <WinBar title="carrie.png" />
                         <div className="scan relative flex justify-center bg-[#110e1a] px-4 pb-14 pt-5">
                             <img src={portrait} width={60} height={75} alt={t.hero.portraitAlt} className="crisp h-[300px] w-[240px] sm:h-[375px] sm:w-[300px]" />
                         </div>
@@ -1271,13 +1258,6 @@ function Hero({ t, lang }) {
                     <div className="dlg relative z-10 -mt-12 mx-3 px-5 pb-4 pt-3 sm:-mx-8">
                         <p className="pixel mb-2 text-[0.72rem] t-pink">{t.hero.speaker}</p>
                         <Typewriter key={lang} text={t.hero.line} hint={t.hero.skipHint} />
-                        <nav aria-label={t.hero.quick} className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-                            {Object.entries(t.hero.choices).map(([id, label]) => (
-                                <a key={id} href={`#${id}`} className="choice">
-                                    {label}
-                                </a>
-                            ))}
-                        </nav>
                     </div>
                 </div>
             </Container>
@@ -1297,17 +1277,6 @@ function About({ t }) {
                 <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
                     <div>
                         <p className="max-w-xl text-[0.95rem] leading-[1.75] t-ink2">{a.intro}</p>
-                        <a href={ART_URL} target="_blank" rel="noopener noreferrer" className="win lift mt-5 inline-flex items-center gap-4 py-3 pl-3 pr-5">
-                            <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-[var(--line)] bg-[var(--bg)]">
-                                <Sprite name="frame" className="h-7 w-8" />
-                            </span>
-                            <span>
-                                <span className="pixel block text-[0.72rem] t-pink">
-                                    {a.art} <span aria-hidden="true">↗</span>
-                                </span>
-                                <span className="mt-1 block text-[0.88rem] t-ink3">{a.artNote}</span>
-                            </span>
-                        </a>
 
                         <h3 className="pixel mt-8 text-[0.78rem] t-lilac">{a.experienceTitle}</h3>
                         <ol className="mt-5 border-l border-[var(--line)]">
@@ -1324,6 +1293,17 @@ function About({ t }) {
                                 </li>
                             ))}
                         </ol>
+
+                        <h3 className="pixel mt-8 text-[0.78rem] t-lilac">{a.previousTitle}</h3>
+                        <ul className="mt-4 space-y-2">
+                            {a.previous.map((p) => (
+                                <li key={p.degree} className="flex items-center gap-3 text-[0.88rem]">
+                                    <span aria-hidden="true" className="h-[7px] w-[7px] shrink-0 border border-[var(--line)] bg-[var(--bg)]" />
+                                    <span className="font-semibold t-ink">{p.degree}</span>
+                                    <span className="t-ink3">· {p.school}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
                     <div className="flex flex-col gap-5">
@@ -1370,7 +1350,7 @@ function Skills({ t }) {
             <Container>
                 <SectionHeading num="02" kicker={t.stackSection.kicker} title={t.stackSection.title} subtitle={t.stackSection.subtitle} />
 
-                <div className="grid gap-7 md:grid-cols-3">
+                <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-4">
                     {STACK_META.map((cat) => (
                         <div key={cat.id} className="win ticks">
                             <WinBar title={`${cat.id}.txt`} />
@@ -1642,51 +1622,29 @@ function Contact({ t }) {
     return (
         <section id="contact" className={SCREEN}>
             <Container>
-                <SectionHeading num="05" kicker={c.kicker} title={c.title} subtitle={c.subtitle} />
-                <div className="grid items-center gap-8 lg:grid-cols-[1.35fr_1fr]">
-                    <div>
-                        <div className="win ticks">
-                            <WinBar title="carla@manjaro: ~" />
-                            <div className="mono space-y-1 p-6 text-[0.86rem] leading-relaxed">
-                                <p>
-                                    <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="t-ink">whoami</span>
-                                </p>
-                                <p className="t-ink2">{c.whoami}</p>
-                                <p className="pt-3">
-                                    <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="t-ink">cat location.txt</span>
-                                </p>
-                                <p className="t-ink2">{c.location}</p>
-                                <p className="pt-3">
-                                    <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="t-ink">ls ~/links</span>
-                                </p>
-                                {CONTACT_LINKS.map((l) => (
-                                    <p key={l.id}>
-                                        <a href={l.href} target="_blank" rel="noopener noreferrer" className="t-lilac underline decoration-dotted underline-offset-4 hover:text-[var(--pink)]">
-                                            {l.text}
-                                        </a>
-                                    </p>
-                                ))}
-                                <p className="pt-3">
-                                    <span className="t-pink">carla@manjaro</span> <span className="t-lilac">~ $</span> <span className="caret" aria-hidden="true" />
-                                </p>
-                            </div>
-                        </div>
+                <SectionHeading num="04" kicker={c.kicker} title={c.title} subtitle={c.subtitle} center />
+                <div className="win ticks mx-auto w-full max-w-xl">
+                    <WinBar title="~" />
+                    <div className="mono space-y-1 p-6 text-[0.86rem] leading-relaxed sm:px-8">
+                        <p>
+                            <span className="t-lilac">~ $</span> <span className="t-ink">cat location.txt</span>
+                        </p>
+                        <p className="t-ink2">{c.location}</p>
+                        <p className="pt-3">
+                            <span className="t-lilac">~ $</span> <span className="t-ink">ls ~/links</span>
+                        </p>
+                        {CONTACT_LINKS.map((l) => (
+                            <p key={l.id}>
+                                <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 t-lilac underline decoration-dotted underline-offset-4 hover:text-[var(--pink)]">
+                                    <span className="shrink-0">{ICONS[l.id]}</span>
+                                    {l.text}
+                                </a>
+                            </p>
+                        ))}
+                        <p className="pt-3">
+                            <span className="t-lilac">~ $</span> <span className="caret" aria-hidden="true" />
+                        </p>
                     </div>
-
-                    <ul className="flex flex-col gap-4">
-                            {CONTACT_LINKS.map((l) => (
-                                <li key={l.id}>
-                                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="win lift flex h-full items-center gap-3 p-3">
-                                        <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--line)] bg-[var(--bg)] t-lilac">{ICONS[l.id]}</span>
-                                        <span className="min-w-0 flex-1">
-                                            <span className="block font-semibold t-ink">{c.links[l.id][0]}</span>
-                                            <span className="block text-[0.8rem] leading-snug t-ink3">{c.links[l.id][1]}</span>
-                                        </span>
-                                        <span aria-hidden="true" className="t-pink">↗</span>
-                                    </a>
-                                </li>
-                            ))}
-                    </ul>
                 </div>
             </Container>
         </section>
@@ -1763,7 +1721,8 @@ function Footer({ t }) {
 export default function Landing() {
     const { lang, toggle } = useLanguage()
     const t = CONTENT[lang]
-    const articleSlug = useArticleRoute()
+    /* Blog oculto por ahora: para reactivar los artículos, usa useArticleRoute() */
+    const articleSlug = null // useArticleRoute()
     const active = useActiveSection(!articleSlug)
 
     /* Al volver de un artículo a una sección (#blog, #projects...), desplazarse hasta ella */
@@ -1795,7 +1754,8 @@ export default function Landing() {
                         <About t={t} />
                         <Skills t={t} />
                         <Projects t={t} lang={lang} />
-                        <Blog t={t} lang={lang} />
+                        {/* Blog oculto por ahora */}
+                        {/* <Blog t={t} lang={lang} /> */}
                         <Contact t={t} />
                     </>
                 )}
